@@ -14,7 +14,7 @@ struct Location {
     int neighbors_count;
 };
 
-Location create_location(char* location_name, Location_Type location_type);
-void init_world(Location world[], int* world_size);
+struct Location create_location(char *location_name, Location_Type location_type);
+void set_children(struct Location *location, struct Location **children_array, int count);
 
 #endif
