@@ -12,8 +12,8 @@ struct Location create_location(char  *location_name, Location_Type location_typ
     loc.parent = NULL;
     loc.children = NULL;
     loc.children_count = 0;
-    loc.neighbors = NULL;
-    loc.neighbors_count = 0;
+    loc.neighbours = NULL;
+    loc.neighbours_count = 0;
 
     return loc;
 }
@@ -26,4 +26,10 @@ void set_children(struct Location *location, struct Location  **children_array, 
     for (int i = 0; i < count; i++) {
         children_array[i]->parent = location;
     }
+}
+
+void set_neighbors(struct Location *location, struct Location **neighbours_array, int count)
+{
+    location->neighbours_array = neighbours_array;
+    location->neighbours_count = count;
 }

@@ -10,11 +10,12 @@ struct Location {
     struct Location *parent;
     struct Location **children;
     int children_count;
-    struct Location **neighbors;
-    int neighbors_count;
+    struct Location **neighbours;
+    int neighbours_count;
 };
 
 struct Location create_location(char *location_name, Location_Type location_type);
 void set_children(struct Location *location, struct Location **children_array, int count);
+void set_neighbors(struct Location *location, struct Location **neighbours_array, int count);
 
 #endif
