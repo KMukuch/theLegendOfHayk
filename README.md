@@ -293,4 +293,5 @@ The game is designed to give a real-world experience, even though it is played e
 
 ## License
 
-
+This project is licensed under the MIT License. See LICENSE.txt for details.
+[LICENSE.txt](LICENSE.txt)
