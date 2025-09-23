@@ -1,130 +1,63 @@
 {
-  "regions": [
-    {
-      "name": "Assiria",
-      "description": "A fertile land of rivers and ancient cities, cradle of early civilizations.",
-      "connections": ["Babylon", "Nippur"],
-      "cities": [
-        {
-          "name": "Babylon",
-          "type": "City",
-          "description": "The great metropolis with towering walls and the famous Ziggurat of Etemenanki.",
-          "districts": [
-            {"name": "City Gate (South)", "description": "The main southern entrance, guarded by city soldiers."},
-            {"name": "Main Road", "description": "A bustling thoroughfare connecting marketplaces, temples, and palaces."},
-            {"name": "Marketplace", "description": "Vendors from all over Assiria sell goods here."},
-            {"name": "Residential Quarter", "description": "Houses of merchants, artisans, and families."},
-            {"name": "Inner Gardens", "description": "Ornamental gardens maintained by the palace."},
-            {"name": "Palace District", "description": "The king's administrative and residential area."},
-            {"name": "Temple of Marduk", "description": "Grand temple dedicated to the chief god of Babylon."},
-            {"name": "Ziggurat (Etemenanki)", "description": "Massive stepped tower at the heart of Babylon."}
-          ]
-        },
-        {
-          "name": "Nippur",
-          "type": "City",
-          "description": "A religious center of Assyria, home to the temple of Enlil.",
-          "districts": [
-            {"name": "City Gate (North)", "description": "Northern entrance of Nippur, welcoming travelers."},
-            {"name": "Main Street", "description": "Connects the gate to key temples and marketplaces."},
-            {"name": "Temple of Enlil", "description": "Sacred temple at the heart of Nippur."},
-            {"name": "Marketplace", "description": "Vibrant center of trade and daily life."},
-            {"name": "Residential Quarter", "description": "Homes of priests, merchants, and common folk."},
-            {"name": "Inner Gardens", "description": "Private gardens maintained by wealthy families."},
-            {"name": "Ziggurat", "description": "Tall stepped structure dominating the skyline."}
-          ]
-        }
-      ],
-      "villages": [
-        {"name": "Eshnunna", "type": "Village", "description": "Small village along a minor river, known for pottery."},
-        {"name": "Kish", "type": "Village", "description": "Agricultural settlement supplying grains to Babylon."}
-      ],
-      "features": [
-        {"name": "Euphrates River", "type": "River", "description": "The lifeline of Assiria, flowing past cities and villages."}
-      ]
-    },
-    {
-      "name": "Van",
-      "description": "Mountainous region surrounding Lake Van, home of the Urartian kingdom.",
-      "connections": ["Babylon", "Ararat", "Tushpa"],
-      "cities": [
-        {
-          "name": "Tushpa",
-          "type": "City",
-          "description": "Capital city of Urartu, located on the eastern shore of Lake Van.",
-          "districts": [
-            {"name": "City Gate (Main Entrance)", "description": "Main gateway into the city, heavily fortified."},
-            {"name": "Main Street", "description": "Central road connecting the gate to marketplaces and the royal fortress."},
-            {"name": "Marketplace", "description": "Bustling with traders from nearby villages and foreign merchants."},
-            {"name": "Residential Quarter", "description": "Homes of citizens, priests, and minor officials."},
-            {"name": "Inner Gardens", "description": "Gardens within the city walls, sometimes used for ceremonies."},
-            {"name": "Royal Fortress", "description": "Seat of the king and military command."},
-            {"name": "Temple of Haldi", "description": "Dedicated to the chief god of Urartu, perched on a hill."},
-            {"name": "Watchtower", "description": "Overlooks the lake and surrounding roads for any approaching threats."}
-          ]
-        }
-      ],
-      "villages": [
-        {"name": "Village A", "type": "Village", "description": "Fishermen's village on the shore of Lake Van."},
-        {"name": "Village B", "type": "Village", "description": "Mountain farming community supplying grains to Tushpa."},
-        {"name": "Village C", "type": "Village", "description": "Small trade post along the road to Ararat."}
-      ],
-      "features": [
-        {"name": "Lake Van", "type": "Lake", "description": "Large saline lake surrounded by mountains."},
-        {"name": "Mount Ararat", "type": "Mountain", "description": "Majestic peak visible from all of Tushpa."}
-      ]
-    },
-    {
-      "name": "Ararat",
-      "description": "Foothills region south of the Caucasus, dominated by Mount Ararat.",
-      "connections": ["Van", "Sevan"],
-      "cities": [],
-      "villages": [
-        {"name": "Ararat Foothills Village 1", "type": "Village", "description": "Nomadic encampment along the slopes."},
-        {"name": "Ararat Foothills Village 2", "type": "Village", "description": "Farming settlement with small stone houses."}
-      ],
-      "features": [
-        {"name": "Mount Ararat", "type": "Mountain", "description": "The tallest peak in the region, often shrouded in clouds."}
-      ]
-    },
-    {
-      "name": "Sevan",
-      "description": "Highlands surrounding Lake Sevan, sparsely populated with villages.",
-      "connections": ["Ararat", "Caucasus"],
-      "cities": [],
-      "villages": [
-        {"name": "Sevan Village 1", "type": "Village", "description": "Fishing village near the lake shore."},
-        {"name": "Sevan Village 2", "type": "Village", "description": "Small mountain farming village."}
-      ],
-      "features": [
-        {"name": "Lake Sevan", "type": "Lake", "description": "Freshwater lake known for fish and trade routes."}
-      ]
-    },
-    {
-      "name": "Caucasus",
-      "description": "Mountainous region connecting Sevan to Mtskheta, home to scattered settlements.",
-      "connections": ["Sevan", "Mtskheta"],
-      "cities": [
-        {
-          "name": "Mtskheta",
-          "type": "City",
-          "description": "Ancient city at the foot of the Caucasus mountains, regional hub.",
-          "districts": [
-            {"name": "City Gate (East)", "description": "Eastern entrance into Mtskheta, welcoming travelers from Sevan.", "connections": ["Main Street"]},
-            {"name": "Main Street", "description": "Central road connecting the gate to the city’s key landmarks.", "connections": ["City Gate (East)", "Royal Citadel", "Temple District", "Market Square"]},
-            {"name": "Royal Citadel", "description": "Fortified citadel overlooking the city, housing local rulers.", "connections": ["Main Street"]},
-            {"name": "Temple District", "description": "Area of several temples, the spiritual heart of Mtskheta.", "connections": ["Main Street", "Market Square"]},
-            {"name": "Market Square", "description": "Open square where traders and townsfolk gather.", "connections": ["Main Street", "Temple District"]}
-          ]
-        }
-      ],
-      "villages": [
-        {"name": "Caucasus Village 1", "type": "Village", "description": "Remote village along a mountain pass."},
-        {"name": "Caucasus Village 2", "type": "Village", "description": "Small farming community in a valley."}
-      ],
-      "features": [
-        {"name": "Caucasus Mountains", "type": "Mountain", "description": "Rugged peaks forming the northern border of the region."}
-      ]
-    }
+  "Babylon": [
+    {"node": "Nippur", "distance": 18},
+    {"node": "Eshnunna", "distance": 10},
+    {"node": "Kish", "distance": 8}
+  ],
+  "Nippur": [
+    {"node": "Babylon", "distance": 18},
+    {"node": "Eshnunna", "distance": 20},
+    {"node": "Kish", "distance": 15}
+  ],
+  "Eshnunna": [
+    {"node": "Babylon", "distance": 10},
+    {"node": "Nippur", "distance": 20}
+  ],
+  "Kish": [
+    {"node": "Babylon", "distance": 8},
+    {"node": "Nippur", "distance": 15}
+  ],
+  "Tushpa": [
+    {"node": "Village A", "distance": 2},
+    {"node": "Village B", "distance": 3},
+    {"node": "Village C", "distance": 4},
+    {"node": "Babylon", "distance": 100},
+    {"node": "Ararat Foothills Village 1", "distance": 60}
+  ],
+  "Village A": [
+    {"node": "Tushpa", "distance": 2}
+  ],
+  "Village B": [
+    {"node": "Tushpa", "distance": 3}
+  ],
+  "Village C": [
+    {"node": "Tushpa", "distance": 4}
+  ],
+  "Ararat Foothills Village 1": [
+    {"node": "Ararat Foothills Village 2", "distance": 2},
+    {"node": "Tushpa", "distance": 60},
+    {"node": "Sevan Village 1", "distance": 12}
+  ],
+  "Ararat Foothills Village 2": [
+    {"node": "Ararat Foothills Village 1", "distance": 2}
+  ],
+  "Sevan Village 1": [
+    {"node": "Sevan Village 2", "distance": 1},
+    {"node": "Ararat Foothills Village 1", "distance": 12},
+    {"node": "Caucasus Village 1", "distance": 15}
+  ],
+  "Sevan Village 2": [
+    {"node": "Sevan Village 1", "distance": 1}
+  ],
+  "Mtskheta": [
+    {"node": "Caucasus Village 1", "distance": 3},
+    {"node": "Caucasus Village 2", "distance": 4},
+    {"node": "Sevan Village 1", "distance": 15}
+  ],
+  "Caucasus Village 1": [
+    {"node": "Mtskheta", "distance": 3}
+  ],
+  "Caucasus Village 2": [
+    {"node": "Mtskheta", "distance": 4}
   ]
 }
