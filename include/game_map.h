@@ -19,6 +19,7 @@ struct Location create_location(const char *location_name, Location_Type locatio
 void set_children(struct Location *location, struct Location **children_array, int count);
 void set_neighbors(struct Location *location, struct Location **neighbours_array, int count);
 cJSON* load_json_file(const char *filename);
-
+cJSON* find_regions(cJSON *json);
+cJSON* find_cities(cJSON *json);
 
 #endif

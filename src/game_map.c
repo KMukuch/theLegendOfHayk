@@ -77,3 +77,13 @@ cJSON* load_json_file(const char *filename)
 
     return json;
 }
+
+cJSON* find_regions(cJSON *json)
+{
+
+}
+
+cJSON* find_cities(cJSON *json)
+{
+    
+}

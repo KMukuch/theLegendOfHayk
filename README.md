@@ -25,6 +25,25 @@
 
 The game is designed to give a real-world experience, even though it is played entirely through the terminal. With each player interaction, the inner clock moves forward. NPCs move, items appear or disappear, and locations evolve over time. The player interacts with this living world, exploring, influencing, and uncovering its stories, but the world continues to exist and change even when the player is not directly present.
 
+### In-game unit system
+
+1. Time Standard
+    - Unit: 1 in-game hour (H)
+    - The basic measure of all time-related events
+    - Day/night cycles:
+        - Day: 12 H
+        - Night: 12 H
+
+2. Distance Standard
+    - Unit: 1 in-game distance (D)
+    - The basic measure of all distance-related events, a distance between two adjacent locations
+    - 1 D = 1 H
+
+3. Action Standard
+    - Unit: 1 in-game action (A)
+    - Only command `inspect [object/npc/place]` can be measured
+    - 1 A = 0.1 H
+
 ## Installation
 
 
