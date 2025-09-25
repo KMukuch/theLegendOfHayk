@@ -1,19 +1,27 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <cjson/cJSON.h>
 #include "config.h"
 #include "game_map.h"
 
 int main()
 {
-    cJSON *json = load_json_file(filename);
-    if (!json)
-    {
-        printf("Failed to load JSON file!\n");
-        return 1;
-    }
-    printf("JSON file loaded successfully.\n");
+    struct Location *game_map = init_game_map();
 
-    cJSON_Delete(json);
+    printf("game_map_size = %d\n", game_map[0].game_map_size);
+
+    for (int i = 0; i < game_map[0].game_map_size; i++)
+    {
+        printf("%s\n", game_map[i].location_name);
+    }
+
+    for (int i = 0; i < game_map[0].game_map_size; i++) {
+        free(game_map[i].children);
+        free(game_map[i].neighbours);
+        free(game_map[i].distances);
+    }
+
+    free(game_map);
 
     return 0;
 }

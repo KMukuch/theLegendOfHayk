@@ -6,11 +6,12 @@
 #include "config.h"
 #include "game_map.h"
 
-struct Location create_location(const char  *location_name, Location_Type location_type)
+struct Location create_location(const char  *location_name, int size, Location_Type location_type)
 {
     struct Location loc;
 
     strcpy(loc.location_name, location_name);
+    loc.game_map_size = size;
     loc.location_type = location_type;
     loc.parent = NULL;
     loc.children = NULL;
@@ -86,16 +87,31 @@ struct Location* init_game_map()
 {
     int game_map_size = 0;
 
-    struc Location *game_map;
+    struct Location *game_map;
+
+    Location_Type location_type;
 
     cJSON *json_file = load_json_file(FILENAME);
-    cJSON *json_nodes = find_nodes(json_file);
-    cJSON *json_connections = find_connections(json_nodes);
+    // cJSON *json_nodes = find_nodes(json_file);
+    // cJSON *json_connections = find_connections(json_nodes);
 
-    game_map_size = cJSON_GetArraySize(json_nodes);
+    game_map_size = cJSON_GetArraySize(json_file);
+    // printf("%i\n", game_map_size);
     game_map = malloc(game_map_size * sizeof(struct Location));
+    if (!game_map) {
+        fprintf(stderr, "Memory allocation failed\n");
+        cJSON_Delete(json_file);
+        return NULL;
+    }
 
-    
+    for (int i = 0; i < game_map_size; i++)
+    {
+        cJSON *item = cJSON_GetArrayItem(json_file, i);
+        cJSON *name = cJSON_GetObjectItemCaseSensitive(item, "name");
+        if (cJSON_IsString(name) && name->valuestring != NULL) {
+            game_map[i] = create_location(name->valuestring, game_map_size, CITY);
+        }
+    }
 
     cJSON_Delete(json_file);
 
@@ -105,29 +121,27 @@ struct Location* init_game_map()
 cJSON* find_nodes(cJSON *json)
 {
     cJSON *json_nodes = NULL;
-    cJSON *json_container = json;
     if (!json)
     {
         printf("Failed to load JSON file!\n");
-        return 1;
+        return NULL;
     }
     
-    json_regions = cJSON_GetObjectItemCaseSensitive(json_container, "name");
+    json_nodes = cJSON_GetObjectItemCaseSensitive(json, "name");
 
-    return json_regions;
+    return json_nodes;
 }
 
 cJSON* find_connections(cJSON *json)
 {
     cJSON *json_cities = NULL;
-    cJSON *json_container = json;
     if (!json)
     {
         printf("Failed to load JSON file!\n");
-        return 1;
+        return NULL;
     }
     
-    json_cities = cJSON_GetObjectItemCaseSensitive(json_container, "city");
+    json_cities = cJSON_GetObjectItemCaseSensitive(json, "city");
 
     return json_cities;
 }
