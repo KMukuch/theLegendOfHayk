@@ -16,6 +16,7 @@ struct Location create_location(const char  *location_name, Location_Type locati
     loc.children = NULL;
     loc.children_count = 0;
     loc.neighbours = NULL;
+    loc.distances = NULL;
     loc.neighbours_count = 0;
 
     return loc;
@@ -31,9 +32,10 @@ void set_children(struct Location *location, struct Location  **children_array, 
     }
 }
 
-void set_neighbors(struct Location *location, struct Location **neighbours_array, int count)
+void set_neighbours(struct Location *location, struct Location **neighbours, int *distances, int count)
 {
-    location->neighbours = neighbours_array;
+    location->neighbours = neighbours;
+    location->distances = distances;
     location->neighbours_count = count;
 }
 
@@ -80,12 +82,52 @@ cJSON* load_json_file(const char *filename)
     return json;
 }
 
-cJSON* find_regions(cJSON *json)
+struct Location* init_game_map()
 {
-    return NULL;
+    int game_map_size = 0;
+
+    struc Location *game_map;
+
+    cJSON *json_file = load_json_file(FILENAME);
+    cJSON *json_nodes = find_nodes(json_file);
+    cJSON *json_connections = find_connections(json_nodes);
+
+    game_map_size = cJSON_GetArraySize(json_nodes);
+    game_map = malloc(game_map_size * sizeof(struct Location));
+
+    
+
+    cJSON_Delete(json_file);
+
+    return game_map;
 }
 
-cJSON* find_cities(cJSON *json)
+cJSON* find_nodes(cJSON *json)
 {
-    return NULL;
+    cJSON *json_nodes = NULL;
+    cJSON *json_container = json;
+    if (!json)
+    {
+        printf("Failed to load JSON file!\n");
+        return 1;
+    }
+    
+    json_regions = cJSON_GetObjectItemCaseSensitive(json_container, "name");
+
+    return json_regions;
+}
+
+cJSON* find_connections(cJSON *json)
+{
+    cJSON *json_cities = NULL;
+    cJSON *json_container = json;
+    if (!json)
+    {
+        printf("Failed to load JSON file!\n");
+        return 1;
+    }
+    
+    json_cities = cJSON_GetObjectItemCaseSensitive(json_container, "city");
+
+    return json_cities;
 }

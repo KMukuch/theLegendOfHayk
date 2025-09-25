@@ -12,14 +12,15 @@ struct Location {
     struct Location **children;
     int children_count;
     struct Location **neighbours;
+    int *distances;
     int neighbours_count;
 };
 
 struct Location create_location(const char *location_name, Location_Type location_type);
 void set_children(struct Location *location, struct Location **children_array, int count);
-void set_neighbors(struct Location *location, struct Location **neighbours, int count);
+void set_neighbours(struct Location *location, struct Location **neighbours, int *distances, int count);
 cJSON* load_json_file(const char *filename);
-cJSON* find_regions(cJSON *json);
-cJSON* find_cities(cJSON *json);
+cJSON* find_nodes(cJSON *json);
+cJSON* find_connections(cJSON *json);
 
 #endif

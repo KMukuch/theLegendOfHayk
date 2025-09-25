@@ -1,63 +1,108 @@
-{
-  "Babylon": [
-    {"node": "Nippur", "distance": 18},
-    {"node": "Eshnunna", "distance": 10},
-    {"node": "Kish", "distance": 8}
-  ],
-  "Nippur": [
-    {"node": "Babylon", "distance": 18},
-    {"node": "Eshnunna", "distance": 20},
-    {"node": "Kish", "distance": 15}
-  ],
-  "Eshnunna": [
-    {"node": "Babylon", "distance": 10},
-    {"node": "Nippur", "distance": 20}
-  ],
-  "Kish": [
-    {"node": "Babylon", "distance": 8},
-    {"node": "Nippur", "distance": 15}
-  ],
-  "Tushpa": [
-    {"node": "Village A", "distance": 2},
-    {"node": "Village B", "distance": 3},
-    {"node": "Village C", "distance": 4},
-    {"node": "Babylon", "distance": 100},
-    {"node": "Ararat Foothills Village 1", "distance": 60}
-  ],
-  "Village A": [
-    {"node": "Tushpa", "distance": 2}
-  ],
-  "Village B": [
-    {"node": "Tushpa", "distance": 3}
-  ],
-  "Village C": [
-    {"node": "Tushpa", "distance": 4}
-  ],
-  "Ararat Foothills Village 1": [
-    {"node": "Ararat Foothills Village 2", "distance": 2},
-    {"node": "Tushpa", "distance": 60},
-    {"node": "Sevan Village 1", "distance": 12}
-  ],
-  "Ararat Foothills Village 2": [
-    {"node": "Ararat Foothills Village 1", "distance": 2}
-  ],
-  "Sevan Village 1": [
-    {"node": "Sevan Village 2", "distance": 1},
-    {"node": "Ararat Foothills Village 1", "distance": 12},
-    {"node": "Caucasus Village 1", "distance": 15}
-  ],
-  "Sevan Village 2": [
-    {"node": "Sevan Village 1", "distance": 1}
-  ],
-  "Mtskheta": [
-    {"node": "Caucasus Village 1", "distance": 3},
-    {"node": "Caucasus Village 2", "distance": 4},
-    {"node": "Sevan Village 1", "distance": 15}
-  ],
-  "Caucasus Village 1": [
-    {"node": "Mtskheta", "distance": 3}
-  ],
-  "Caucasus Village 2": [
-    {"node": "Mtskheta", "distance": 4}
-  ]
-}
+[
+  {
+    "name": "Babylon",
+    "connection": [
+      { "city": "Nippur", "distance": 18 },
+      { "city": "Eshnunna", "distance": 10 },
+      { "city": "Kish", "distance": 8 }
+    ]
+  },
+  {
+    "name": "Nippur",
+    "connection": [
+      { "city": "Babylon", "distance": 18 },
+      { "city": "Eshnunna", "distance": 20 },
+      { "city": "Kish", "distance": 15 }
+    ]
+  },
+  {
+    "name": "Eshnunna",
+    "connection": [
+      { "city": "Babylon", "distance": 10 },
+      { "city": "Nippur", "distance": 20 }
+    ]
+  },
+  {
+    "name": "Kish",
+    "connection": [
+      { "city": "Babylon", "distance": 8 },
+      { "city": "Nippur", "distance": 15 }
+    ]
+  },
+  {
+    "name": "Tushpa",
+    "connection": [
+      { "village": "Village A", "distance": 2 },
+      { "village": "Village B", "distance": 3 },
+      { "village": "Village C", "distance": 4 },
+      { "city": "Babylon", "distance": 100 },
+      { "village": "Ararat Foothills Village 1", "distance": 60 }
+    ]
+  },
+  {
+    "name": "Village A",
+    "connection": [
+      { "city": "Tushpa", "distance": 2 }
+    ]
+  },
+  {
+    "name": "Village B",
+    "connection": [
+      { "city": "Tushpa", "distance": 3 }
+    ]
+  },
+  {
+    "name": "Village C",
+    "connection": [
+      { "city": "Tushpa", "distance": 4 }
+    ]
+  },
+  {
+    "name": "Ararat Foothills Village 1",
+    "connection": [
+      { "village": "Ararat Foothills Village 2", "distance": 2 },
+      { "village": "Tushpa", "distance": 60 },
+      { "village": "Sevan Village 1", "distance": 12 }
+    ]
+  },
+  {
+    "name": "Ararat Foothills Village 2",
+    "connection": [
+      { "village": "Ararat Foothills Village 1", "distance": 2 }
+    ]
+  },
+  {
+    "name": "Sevan Village 1",
+    "connection": [
+      { "village": "Sevan Village 2", "distance": 1 },
+      { "village": "Ararat Foothills Village 1", "distance": 12 },
+      { "village": "Caucasus Village 1", "distance": 15 }
+    ]
+  },
+  {
+    "name": "Sevan Village 2",
+    "connection": [
+      { "village": "Sevan Village 1", "distance": 1 }
+    ]
+  },
+  {
+    "name": "Mtskheta",
+    "connection": [
+      { "village": "Caucasus Village 1", "distance": 3 },
+      { "village": "Caucasus Village 2", "distance": 4 },
+      { "village": "Sevan Village 1", "distance": 15 }
+    ]
+  },
+  {
+    "name": "Caucasus Village 1",
+    "connection": [
+      { "city": "Mtskheta", "distance": 3 }
+    ]
+  },
+  {
+    "name": "Caucasus Village 2",
+    "connection": [
+      { "city": "Mtskheta", "distance": 4 }
+    ]
+  }
+]

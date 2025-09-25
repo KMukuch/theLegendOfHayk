@@ -5,13 +5,15 @@
 
 int main()
 {
-    cJSON *json = load_json_file("../data/game_map.json");
+    cJSON *json = load_json_file(filename);
     if (!json)
     {
         printf("Failed to load JSON file!\n");
         return 1;
     }
     printf("JSON file loaded successfully.\n");
+
+    cJSON_Delete(json);
 
     return 0;
 }

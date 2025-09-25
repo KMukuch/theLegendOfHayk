@@ -1,6 +1,6 @@
 # The Legend of Hayk
 
-**The Legend of Hayk** is a text-based adventure game written in **C**. The game immerses players in a narrative inspired by the legendary tales of Hayk, where choices and exploration shape the journey. Players navigate through quests, encounter challenges, and interact with the story world—all through a command-line interface.
+**The Legend of Hayk** is a text-based adventure game written in **C**. The game immerses players in a narrative inspired by the legend of Hayk, where choices and exploration shape the journey. Players navigate through quests, encounter challenges, and interact with the story world—all through a command-line interface.
 
 ## Table of contents
 
