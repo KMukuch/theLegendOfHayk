@@ -5,6 +5,7 @@
 #define FILENAME "../data/game_map.json"
 
 typedef enum {
+    DEFAULT,
     REGION,
     CITY,
     VILLAGE,

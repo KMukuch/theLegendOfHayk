@@ -16,9 +16,7 @@ int main()
     }
 
     for (int i = 0; i < game_map[0].game_map_size; i++) {
-        free(game_map[i].children);
-        free(game_map[i].neighbours);
-        free(game_map[i].distances);
+        free(game_map[i].connections);
     }
 
     free(game_map);
