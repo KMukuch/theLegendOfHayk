@@ -5,7 +5,8 @@
 #include <cjson/cJSON.h>
 #include "config.h"
 
-struct Location {
+struct Location 
+{
     char location_name[MAXNAME];
     int game_map_size;
     Location_Type location_type;
@@ -13,7 +14,8 @@ struct Location {
     int connections_count;
 };
 
-struct Location_Connection {
+struct Location_Connection 
+{
     const struct Location *location;
     int connection_distance;
 };

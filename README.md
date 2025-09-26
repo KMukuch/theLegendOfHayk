@@ -42,7 +42,7 @@ The game is designed to give a real-world experience, even though it is played e
 3. Action Standard
     - Unit: 1 in-game action (A)
     - Only command `inspect [object/npc/place]` can be measured
-    - 1 A = 0.1 H
+    - 1 A = 1/6 H
 
 ## Installation
 
