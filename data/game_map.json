@@ -1,108 +1,123 @@
 [
   {
-    "name": "Babylon",
+    "node": "Babylon",
+    "type": "CITY",
     "connection": [
-      { "city": "Nippur", "distance": 18 },
-      { "city": "Eshnunna", "distance": 10 },
-      { "city": "Kish", "distance": 8 }
+      { "node": "Nippur", "type": "CITY", "distance": 18 },
+      { "node": "Eshnunna", "type": "CITY", "distance": 10 },
+      { "node": "Kish", "type": "CITY", "distance": 8 }
     ]
   },
   {
-    "name": "Nippur",
+    "node": "Nippur",
+    "type": "CITY",
     "connection": [
-      { "city": "Babylon", "distance": 18 },
-      { "city": "Eshnunna", "distance": 20 },
-      { "city": "Kish", "distance": 15 }
+      { "node": "Babylon", "type": "CITY", "distance": 18 },
+      { "node": "Eshnunna", "type": "CITY", "distance": 20 },
+      { "node": "Kish", "type": "CITY", "distance": 15 }
     ]
   },
   {
-    "name": "Eshnunna",
+    "node": "Eshnunna",
+    "type": "CITY",
     "connection": [
-      { "city": "Babylon", "distance": 10 },
-      { "city": "Nippur", "distance": 20 }
+      { "node": "Babylon", "type": "CITY", "distance": 10 },
+      { "node": "Nippur", "type": "CITY", "distance": 20 }
     ]
   },
   {
-    "name": "Kish",
+    "node": "Kish",
+    "type": "CITY",
     "connection": [
-      { "city": "Babylon", "distance": 8 },
-      { "city": "Nippur", "distance": 15 }
+      { "node": "Babylon", "type": "CITY", "distance": 8 },
+      { "node": "Nippur", "type": "CITY", "distance": 15 }
     ]
   },
   {
-    "name": "Tushpa",
+    "node": "Tushpa",
+    "type": "CITY",
     "connection": [
-      { "village": "Village A", "distance": 2 },
-      { "village": "Village B", "distance": 3 },
-      { "village": "Village C", "distance": 4 },
-      { "city": "Babylon", "distance": 100 },
-      { "village": "Ararat Foothills Village 1", "distance": 60 }
+      { "node": "Village A", "type": "VILLAGE", "distance": 2 },
+      { "node": "Village B", "type": "VILLAGE", "distance": 3 },
+      { "node": "Village C", "type": "VILLAGE", "distance": 4 },
+      { "node": "Babylon", "type": "CITY", "distance": 100 },
+      { "node": "Ararat Foothills Village 1", "type": "VILLAGE", "distance": 60 }
     ]
   },
   {
-    "name": "Village A",
+    "node": "Village A",
+    "type": "VILLAGE",
     "connection": [
-      { "city": "Tushpa", "distance": 2 }
+      { "node": "Tushpa", "type": "CITY", "distance": 2 }
     ]
   },
   {
-    "name": "Village B",
+    "node": "Village B",
+    "type": "VILLAGE",
     "connection": [
-      { "city": "Tushpa", "distance": 3 }
+      { "node": "Tushpa", "type": "CITY", "distance": 3 }
     ]
   },
   {
-    "name": "Village C",
+    "node": "Village C",
+    "type": "VILLAGE",
     "connection": [
-      { "city": "Tushpa", "distance": 4 }
+      { "node": "Tushpa", "type": "CITY", "distance": 4 }
     ]
   },
   {
-    "name": "Ararat Foothills Village 1",
+    "node": "Ararat Foothills Village 1",
+    "type": "VILLAGE",
     "connection": [
-      { "village": "Ararat Foothills Village 2", "distance": 2 },
-      { "village": "Tushpa", "distance": 60 },
-      { "village": "Sevan Village 1", "distance": 12 }
+      { "node": "Ararat Foothills Village 2", "type": "VILLAGE", "distance": 2 },
+      { "node": "Tushpa", "type": "CITY", "distance": 60 },
+      { "node": "Sevan Village 1", "type": "VILLAGE", "distance": 12 }
     ]
   },
   {
-    "name": "Ararat Foothills Village 2",
+    "node": "Ararat Foothills Village 2",
+    "type": "VILLAGE",
     "connection": [
-      { "village": "Ararat Foothills Village 1", "distance": 2 }
+      { "node": "Ararat Foothills Village 1", "type": "VILLAGE", "distance": 2 }
     ]
   },
   {
-    "name": "Sevan Village 1",
+    "node": "Sevan Village 1",
+    "type": "VILLAGE",
     "connection": [
-      { "village": "Sevan Village 2", "distance": 1 },
-      { "village": "Ararat Foothills Village 1", "distance": 12 },
-      { "village": "Caucasus Village 1", "distance": 15 }
+      { "node": "Sevan Village 2", "type": "VILLAGE", "distance": 1 },
+      { "node": "Ararat Foothills Village 1", "type": "VILLAGE", "distance": 12 },
+      { "node": "Caucasus Village 1", "type": "VILLAGE", "distance": 15 }
     ]
   },
   {
-    "name": "Sevan Village 2",
+    "node": "Sevan Village 2",
+    "type": "VILLAGE",
     "connection": [
-      { "village": "Sevan Village 1", "distance": 1 }
+      { "node": "Sevan Village 1", "type": "VILLAGE", "distance": 1 }
     ]
   },
   {
-    "name": "Mtskheta",
+    "node": "Mtskheta",
+    "type": "CITY",
     "connection": [
-      { "village": "Caucasus Village 1", "distance": 3 },
-      { "village": "Caucasus Village 2", "distance": 4 },
-      { "village": "Sevan Village 1", "distance": 15 }
+      { "node": "Caucasus Village 1", "type": "VILLAGE", "distance": 3 },
+      { "node": "Caucasus Village 2", "type": "VILLAGE", "distance": 4 },
+      { "node": "Sevan Village 1", "type": "VILLAGE", "distance": 15 }
     ]
   },
   {
-    "name": "Caucasus Village 1",
+    "node": "Caucasus Village 1",
+    "type": "VILLAGE",
     "connection": [
-      { "city": "Mtskheta", "distance": 3 }
+      { "node": "Mtskheta", "type": "CITY", "distance": 3 }
     ]
   },
   {
-    "name": "Caucasus Village 2",
+    "node": "Caucasus Village 2",
+    "type": "VILLAGE",
     "connection": [
-      { "city": "Mtskheta", "distance": 4 }
+      { "node": "Mtskheta", "type": "CITY", "distance": 4 }
     ]
   }
 ]
