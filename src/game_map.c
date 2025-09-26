@@ -19,15 +19,20 @@ struct Location create_location(const char  *location_name, int size, Location_T
     return loc;
 }
 
-struct Location_Connection create_connection(const struct Location *location, int distance, int size)
+struct Location_Connection create_connection(const struct Location *location, int distance)
 {
     struct Location_Connection con;
 
     con.location = location;
     con.connection_distance = distance;
-    con.connection_size = size;
 
     return con;
+}
+
+void set_connection(struct Location *location, struct Location_Connection *location_connection, int size)
+{
+    location->connections = location_connection;
+    location->connections_count = size;
 }
 
 Location_Type parse_location_type(const char *type_str)
@@ -120,11 +125,11 @@ struct Location* init_game_map()
         connection_size = cJSON_GetArraySize(json_connection);
         if (connection_size > 0)
         {
-            connection = malloc(connection_size * sizeof(struct Location));
+            connection = malloc(connection_size * sizeof(struct Location_Connection));
             if (!connection)
             {
                 fprintf(stderr, "Memory allocation failed\n");
-                cJSON_Delete(json_connection);
+                cJSON_Delete(json_file);
                 return NULL;
             }
             
@@ -133,14 +138,25 @@ struct Location* init_game_map()
                 cJSON *json_connection_item = cJSON_GetArrayItem(json_connection, j);
                 cJSON *json_node = cJSON_GetObjectItemCaseSensitive(json_connection_item, "node");
                 cJSON *json_distance = cJSON_GetObjectItemCaseSensitive(json_connection_item, "distance");
-                if (cJSON_IsString(json_node) && json_node->valuestring != NULL && 0 == strcmp(game_map[i].location_name, json_node->valuestring)) 
+                
+                struct Location *target = NULL;
+                bool found = false;
+
+                for (int k = 0; k < game_map_size && !found; k++) 
                 {
-                    if (cJSON_IsNumber(json_distance)) 
+                    if (strcmp(game_map[k].location_name, json_node->valuestring) == 0) 
                     {
-                        connection[j] = create_connection(&game_map[i], json_distance->valueint, connection_size);
+                        target = &game_map[k];
+                        found = true;
                     }
                 }
+                
+                if (target && cJSON_IsNumber(json_distance)) 
+                {
+                    connection[j] = create_connection(target, json_distance->valueint);
+                }
             }
+            set_connection(&game_map[i], connection, connection_size);
         }
     }
 

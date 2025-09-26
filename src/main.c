@@ -10,16 +10,20 @@ int main()
 
     printf("game_map_size = %d\n", game_map[0].game_map_size);
 
-    for (int i = 0; i < game_map[0].game_map_size; i++)
+    for (int i = 0; i < game_map[0].game_map_size; i++) 
     {
-        printf("%s\n", game_map[i].location_name);
+        printf("%s connections:\n", game_map[i].location_name);
+        for (int j = 0; j < game_map[i].connections_count; j++) 
+        {
+            printf("  -> %s (distance=%d)\n", game_map[i].connections[j].location->location_name, game_map[i].connections[j].connection_distance);
+        }
     }
 
-    for (int i = 0; i < game_map[0].game_map_size; i++) {
+    
+    for (int i = 0; i < game_map[0].game_map_size; i++) 
+    {
         free(game_map[i].connections);
     }
-
-    free(game_map);
 
     return 0;
 }
