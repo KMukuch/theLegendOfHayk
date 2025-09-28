@@ -19,4 +19,13 @@ typedef enum
     NIGHT
 } Day_Cycle_Type;
 
+typedef enum {
+    UNKNOWN,
+    MOVE,
+    LOOK,
+    WHERE,
+    MAP,
+    QUIT
+} CommandType;
+
 #endif
