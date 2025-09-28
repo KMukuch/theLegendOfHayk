@@ -16,8 +16,7 @@ struct Game_Clock
 struct Game_Clock init_game_clock();
 struct Game_Clock* advance_game_clock(struct Game_Clock *game_clock, const float hours);
 int get_current_day(const struct Game_Clock *game_clock);
-// float get_current_hour();
-// char* get_current_hour_as_string();
+char* get_current_hour_as_string(const struct Game_Clock *game_clock);
 // Day_Cycle_Type get_current_day_cycle_type();
 
 #endif

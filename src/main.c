@@ -16,9 +16,12 @@ int main()
         return 1;
     }
 
+    char *time = get_current_hour_as_string(&game_clock);
+
     printf("game_map_size = %d\n", game_map[0].game_map_size);
     printf("total game time %f, current day %i, current hour %f, %i\n", game_clock.total_game_time, game_clock.current_day, game_clock.current_hour, game_clock.day_cycle_type);
-    
+    printf("%s\n", time);
+
     for (int i = 0; i < game_map[0].game_map_size; i++) 
     {
         printf("%s connections:\n", game_map[i].location_name);

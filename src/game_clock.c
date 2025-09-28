@@ -33,3 +33,15 @@ int get_current_day(const struct Game_Clock *game_clock)
 {
     return game_clock->current_day;
 }
+
+char* get_current_hour_as_string(const struct Game_Clock *game_clock)
+{
+    static char time_string[6];
+    
+    int hours = floorf(game_clock->current_hour);
+    int minutes = fmodf(game_clock->current_hour, 1.0f) * 60.0f;
+
+    snprintf(time_string, sizeof(time_string), "%02d:%02d", hours, minutes);
+
+    return time_string;
+}
