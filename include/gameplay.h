@@ -1,5 +1,5 @@
-#ifndef GAMEPLAY.H
-#define GAMEPLAY.H
+#ifndef GAMEPLAY_H
+#define GAMEPLAY_H
 
 #include <stdio.h>
 #include "config.h"
@@ -21,7 +21,7 @@ struct Item
 
 struct Player create_player();
 CommandType identify_command(const char *command);
-void parse_and_execute_command(char *command);
+// void parse_and_execute_command(char *command);
 // void move_player();
 // void inspect_object();
 // void attack_enemy();

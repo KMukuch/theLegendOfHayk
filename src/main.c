@@ -4,6 +4,7 @@
 #include "config.h"
 #include "game_map.h"
 #include "game_clock.h"
+#include "game_script.h"
 #include "gameplay.h"
 
 int main()
@@ -13,6 +14,8 @@ int main()
     struct Game_Clock game_clock = init_game_clock();
     struct Location *game_map = init_game_map();
     struct Player player = create_player();
+
+    printf("%s\n", load_game_title());
     
     // fgets(buffer, MAXLINE, stdin);
     // while(identify_command(buffer) != QUIT)

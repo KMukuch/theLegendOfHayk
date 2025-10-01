@@ -1,10 +1,10 @@
-#ifndef GAME_SCRIPT.H
-#define GAME_SCRIPT.H
+#ifndef GAME_SCRIPT_H
+#define GAME_SCRIPT_H
 
 #include <stdio.h>
 #include "config.h"
 
-void load_game_title();
-void load_game_openning_script();
+char* load_game_title();
+char* load_game_openning_script();
 
 #endif

@@ -13,7 +13,7 @@ struct Player create_player()
 {
     struct Player player;
 
-    player.curren_location = NULL;
+    player.current_location = NULL;
     player.health = MAXHEALTH;
 
     return player;
@@ -31,25 +31,25 @@ CommandType identify_command(const char *command)
     return UNKNOWN;
 }
 
-CommandType parse_and_execute_command(const char *command)
-{
-    char *key = srttok(command, ' ');
-    CommandType command_type = identify_command(key[0]);
-    if(command_type == MOVE)
-    {
+// CommandType parse_and_execute_command(const char *command)
+// {
+//     char *key = srttok(command, ' ');
+//     CommandType command_type = identify_command(key[0]);
+//     if(command_type == MOVE)
+//     {
 
-    } else if(command_type == LOOK)
-    {
+//     } else if(command_type == LOOK)
+//     {
 
-    } else if(command_type == WHERE)
-    {
+//     } else if(command_type == WHERE)
+//     {
 
-    } else if(command_type == MAP)
-    {
+//     } else if(command_type == MAP)
+//     {
 
-    } else if(command_type == QUIT)
-    {
-        return QUIT;
-    }
-    return UNKNOWN;
-}
+//     } else if(command_type == QUIT)
+//     {
+//         return QUIT;
+//     }
+//     return UNKNOWN;
+// }

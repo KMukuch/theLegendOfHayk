@@ -3,7 +3,7 @@
     "author": "Mkrtich Kuloian",
     "version": 1.0,
     "date": "DD.MM.2025",
-    "narrative": [
-        {"game_start": "Long ago when giants lived..."}
+    "story": [
+        {"class": "game_start", "content": "Long ago when giants lived..."}
     ]
 }
