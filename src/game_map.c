@@ -5,6 +5,9 @@
 #include <cjson/cJSON.h>
 #include "config.h"
 #include "game_map.h"
+#include "json_utils.h"
+
+#define FILENAME "../data/game_map.json"
 
 struct Location create_location(const char  *location_name, int size, Location_Type location_type)
 {
@@ -41,49 +44,6 @@ Location_Type parse_location_type(const char *type_str)
     if (strcmp(type_str, "CITY") == 0) return CITY;
     if (strcmp(type_str, "VILLAGE") == 0) return VILLAGE;
     return DEFAULT;
-}
-
-cJSON* load_json_file(const char *filename)
-{
-    FILE *fp = fopen(filename, "rb");
-    if (!fp)
-    {
-        perror("Error opening file");
-        return NULL;
-    }
-
-    fseek(fp, 0, SEEK_END);
-    long len = ftell(fp);
-    rewind(fp);
-
-    char *buffer = malloc(len + 1);
-    if (!buffer)
-    {
-        fprintf(stderr, "Memory allocation failed\n");
-        fclose(fp);
-        return NULL;
-    }
-
-    if (fread(buffer, 1, len, fp) != len)
-    {
-        fprintf(stderr, "Error reading file\n");
-        free(buffer);
-        fclose(fp);
-        return NULL;
-    }
-    buffer[len] = '\0';
-    fclose(fp);
-
-    cJSON *json = cJSON_Parse(buffer);
-    free(buffer);
-
-    if (!json)
-    {
-        fprintf(stderr, "JSON parse error: %s\n", cJSON_GetErrorPtr());
-        return NULL;
-    }
-
-    return json;
 }
 
 struct Location* init_game_map()

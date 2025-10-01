@@ -2,7 +2,6 @@
 #define CONFIG_H
 
 #define MAXNAME 50
-#define FILENAME "../data/game_map.json"
 
 typedef enum 
 {
@@ -21,6 +20,9 @@ typedef enum
 
 typedef enum {
     UNKNOWN,
+    START,
+    NEW,
+    LOAD,
     MOVE,
     LOOK,
     WHERE,

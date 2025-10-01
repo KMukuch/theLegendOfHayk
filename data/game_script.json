@@ -1,0 +1,9 @@
+{
+    "title": "The Legend of Hayk",
+    "author": "Mkrtich Kuloian",
+    "version": 1.0,
+    "date": "DD.MM.2025",
+    "narrative": [
+        {"game_start": "Long ago when giants lived..."}
+    ]
+}

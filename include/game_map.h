@@ -24,7 +24,6 @@ struct Location create_location(const char *location_name, int size, Location_Ty
 struct Location_Connection create_connection(const struct Location *location, int distance);
 void set_connection(struct Location *location, struct Location_Connection *location_connection, int size);
 Location_Type parse_location_type(const char *type_str);
-cJSON* load_json_file(const char *filename);
 struct Location* init_game_map();
 // cJSON* find_nodes(cJSON *json);
 // cJSON* find_connections(cJSON *json);

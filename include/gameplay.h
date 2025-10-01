@@ -6,7 +6,7 @@
 #include "utils.h"
 
 #define MAXHEALTH 100
-#define MAXKEY_NUMBER 10
+#define MAXLINE 100
 
 struct Player
 {

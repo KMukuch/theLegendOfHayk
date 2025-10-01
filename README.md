@@ -1,6 +1,6 @@
 # The Legend of Hayk
 
-**The Legend of Hayk** is a text-based adventure game written in **C**. The game immerses players in a narrative inspired by the legend of Hayk, where choices and exploration shape the journey. Players navigate through quests, encounter challenges, and interact with the story world—all through a command-line interface.
+**The Legend of Hayk** is a text-based adventure game written in **C**. The game immerses players in a narrative inspired by the legend of Hayk, where choices and exploration shape the journey. Players navigate through quests, encounter challenges, and interact with the story world - all through a command-line interface.
 
 ## Table of contents
 
@@ -18,12 +18,11 @@
 - docs
 - data
 - build
-- Makefile
 - README
 
 ## Features
 
-The game is designed to give a real-world experience, even though it is played entirely through the terminal. With each player interaction, the inner clock moves forward. NPCs move, items appear or disappear, and locations evolve over time. The player interacts with this living world, exploring, influencing, and uncovering its stories, but the world continues to exist and change even when the player is not directly present.
+The game is designed to give a time experience of the real world. With each player interaction, the game clock moves forward. NPCs move, items appear or disappear, and locations evolve over time.
 
 ### In-game unit system
 

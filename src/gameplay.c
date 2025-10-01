@@ -21,6 +21,7 @@ struct Player create_player()
 
 CommandType identify_command(const char *command)
 {
+    if (strcmp(command, "start") == 0) return START;
     if (strcmp(command, "go") == 0) return MOVE;
     if (strcmp(command, "look") == 0) return LOOK;
     if (strcmp(command, "where") == 0) return WHERE;
@@ -32,8 +33,6 @@ CommandType identify_command(const char *command)
 
 CommandType parse_and_execute_command(const char *command)
 {
-    int keys[MAXKEY_NUMBER];
-
     char *key = srttok(command, ' ');
     CommandType command_type = identify_command(key[0]);
     if(command_type == MOVE)
