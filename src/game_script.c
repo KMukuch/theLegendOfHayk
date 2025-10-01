@@ -11,16 +11,35 @@
 
 char* load_game_title()
 {
+    int total_len;
+
     cJSON *json_file = load_json_file(FILENAME);
-    cJSON *json_title = cJSON_GetObjectItemCaseSensitive(json_file, "title");
-    if (cJSON_IsString(json_title) && json_title->valuestring != NULL) 
+    if (!json_file) return NULL;
+
+    cJSON *json_name = cJSON_GetObjectItemCaseSensitive(json_file, "name");
+    cJSON *json_author = cJSON_GetObjectItemCaseSensitive(json_file, "author");
+    cJSON *json_version = cJSON_GetObjectItemCaseSensitive(json_file, "version");
+    cJSON *json_date = cJSON_GetObjectItemCaseSensitive(json_file, "date");
+
+    if (!cJSON_IsString(json_name) || !cJSON_IsString(json_author) || !cJSON_IsString(json_version) || !cJSON_IsString(json_date))
     {
-        return json_title->valuestring;
+        cJSON_Delete(json_file);
+        return NULL;
     }
+    const char *format = "%s by %s, version %s, %s";
+    total_len = snprintf(NULL, 0, format, json_name->valuestring, json_author->valuestring, json_version->valuestring, json_date->valuestring) + 1;
+    char *title = malloc(total_len);
+    if (!title) {
+        fprintf(stderr, "Memory allocation failed\n");
+        cJSON_Delete(json_file);
+        return NULL;
+    }
+
+    snprintf(title, total_len, format, json_name->valuestring, json_author->valuestring, json_version->valuestring, json_date->valuestring);
 
     cJSON_Delete(json_file);
 
-    return NULL;
+    return title;
 }
 
 char* load_game_openning_script()

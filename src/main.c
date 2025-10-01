@@ -16,6 +16,8 @@ int main()
     struct Player player = create_player();
 
     printf("%s\n", load_game_title());
+    getchar();
+    printf("%s\n", load_game_openning_script());
     
     // fgets(buffer, MAXLINE, stdin);
     // while(identify_command(buffer) != QUIT)

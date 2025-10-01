@@ -58,7 +58,8 @@ struct Location* init_game_map()
     game_map_size = cJSON_GetArraySize(json_file);
     // printf("%i\n", game_map_size);
     game_map = malloc(game_map_size * sizeof(struct Location));
-    if (!game_map) {
+    if (!game_map) 
+    {
         fprintf(stderr, "Memory allocation failed\n");
         cJSON_Delete(json_file);
         return NULL;
