@@ -4,6 +4,6 @@
     "version": "1.0",
     "date": "DD.MM.2025",
     "story": [
-        {"class": "game_start", "content": "Long ago when giants lived..."}
+        {"class": "game_start", "content": "Long ago when giants roamed the Earth there was one ruler that wanted "}
     ]
 }

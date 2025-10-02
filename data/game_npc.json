@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Vazgen",
+        "id": 0,
+        "location": "Babylon",
+        "dialogue": [
+            {
+                "id": 0,
+                "flag": false,
+                "content": "Barev.",
+            }
+        ]
+    }
+]
