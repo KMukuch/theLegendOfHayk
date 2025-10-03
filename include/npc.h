@@ -2,18 +2,23 @@
 #define NPC_H
 
 #include <stdio.h>
+#include <stdbool.h>
 #include "config.h"
+#include "game_map.h"
 
 struct NPC 
 {
-    struct Location *current_location;
+    char npc_name[MAXNAME];
+    const struct Location *current_location;
     bool flag;
+    int dialogue_id;
 };
 
-struct NPC create_npc();
-void set_npc_location(struct NPC *npc);
-int get_npc_location(const struct NPC *npc);
-void init_game_npc();
+struct NPC create_npc(const char *npc_name);
+void set_npc_location_by_name(cJSON *json_item, struct NPC *npc, const struct Location *game_map, int game_map_size);
+int get_game_npc_size();
+struct NPC* init_game_npc(const struct Location *game_map);
+void free_game_npc(struct NPC *game_npc);
 char* json_get_dialogue(char *npc_name, const int id);
 void free_dialogue_content(char *dialogue_content);
 

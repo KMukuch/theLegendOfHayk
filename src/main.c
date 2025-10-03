@@ -6,6 +6,7 @@
 #include "game_clock.h"
 #include "game_script.h"
 #include "gameplay.h"
+#include "npc.h"
 
 int main()
 {
@@ -13,6 +14,7 @@ int main()
 
     struct Game_Clock game_clock = init_game_clock();
     struct Location *game_map = init_game_map();
+    struct NPC *game_npc = init_game_npc(game_map);
     struct Player player = create_player();
 
     printf("%s\n", load_game_title());
@@ -27,7 +29,8 @@ int main()
     //         printf("Start the game");
     //     }
     // }
-
+    
+    free_game_npc(game_npc);
     free_game_map(game_map);
 
     return 0;

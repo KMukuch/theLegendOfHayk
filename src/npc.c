@@ -7,33 +7,81 @@
 #include "json_utils.h"
 #include "npc.h"
 
-#define FILENAME "../data/npc.json"
+#define FILENAME "../data/game_npc.json"
 
-struct NPC create_npc()
+struct NPC create_npc(const char *npc_name)
 {
     struct NPC npc;
 
+    strcpy(npc.npc_name, npc_name);
     npc.current_location = NULL;
     npc.flag = false;
+    npc.dialogue_id = 0;
 
     return npc;
 }
 
-void set_npc_location(struct NPC *npc)
+void set_npc_location_by_name(cJSON *json_item, struct NPC *npc, const struct Location *game_map, int game_map_size)
 {
+    bool location_flag = false;
 
+    char location_name[MAXNAME];
+
+    cJSON *json_location_name = cJSON_GetObjectItemCaseSensitive(json_item, "location");
+    if(cJSON_IsString(json_location_name) && json_location_name->valuestring != NULL)
+    {
+        strcpy(location_name, json_location_name->valuestring);
+    }
+
+    for(int i = 0; i < game_map_size; i++)
+    {
+        if(strcmp(location_name, game_map[i].location_name) == 0 && !location_flag)
+        {
+            location_flag = true;
+            npc->current_location = &game_map[i];
+        }
+    }
 }
 
-int get_npc_location(const struct NPC *npc)
+int get_game_npc_size()
 {
-
-
-    return 0;
-}
-
-void init_game_npc()
-{
+    int game_npc_size = 0;
     
+    cJSON *json_file = load_json_file(FILENAME);
+    game_npc_size = cJSON_GetArraySize(json_file);
+
+    return game_npc_size;
+}
+
+struct NPC* init_game_npc(const struct Location *game_map)
+{
+    int i, game_npc_size;
+    struct NPC *game_npc;
+    
+    cJSON *json_file = load_json_file(FILENAME);
+    cJSON *json_item = NULL;
+
+    game_npc_size = cJSON_GetArraySize(json_file);
+    game_npc = malloc(game_npc_size * sizeof(struct NPC));
+    i = 0;
+    cJSON_ArrayForEach(json_item, json_file)
+    {
+        cJSON *json_name = cJSON_GetObjectItemCaseSensitive(json_item, "name");
+        if(cJSON_IsString(json_name) && json_name->valuestring != NULL)
+        {
+            game_npc[i] = create_npc(json_name->valuestring);
+            set_npc_location_by_name(json_item, &game_npc[i], game_map, game_map[0].game_map_size);
+        }
+        i++;
+    }
+    cJSON_Delete(json_file);
+
+    return game_npc;
+}
+
+void free_game_npc(struct NPC *game_npc)
+{
+    free(game_npc);
 }
 
 char* json_get_dialogue(char *npc_name, const int id)

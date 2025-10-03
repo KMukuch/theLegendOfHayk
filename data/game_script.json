@@ -1,9 +1,9 @@
 {
     "name": "The Legend of Hayk",
     "author": "KMukuch",
-    "version": "1.0",
+    "version": "0.1",
     "date": "DD.MM.2025",
     "story": [
-        {"class": "game_start", "content": "Long ago when giants roamed the Earth there was one ruler that wanted "}
+        {"class": "game_start", "content": "Long ago, when giants roamed the Earth, there was one who sought to be the most powerful. A tower was built in the ancient city of Babylon to reach the heavens, but God destroyed it and scattered them across the world. Thus begins the story of Hayk - the legendary founder and father of armenian nation"}
     ]
 }
