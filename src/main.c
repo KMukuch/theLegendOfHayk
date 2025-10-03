@@ -12,7 +12,7 @@
 int main()
 {
     char buffer[MAXLINE];
-    
+
     struct Game_Clock game_clock = init_game_clock();
     struct Location *game_map = init_game_map();
     struct NPC *game_npc = init_game_npc(game_map);
@@ -28,6 +28,7 @@ int main()
         {
             printf("%s\n", load_game_openning_script());
         }
+        fgets(buffer, MAXLINE, stdin);
     }
     
     // fgets(buffer, MAXLINE, stdin);

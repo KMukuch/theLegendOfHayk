@@ -15,7 +15,6 @@ void strtrim(char *dest, const char *src)
 
     if (*start == '\0') 
     {
-        
         dest[0] = '\0';
         return;
     }

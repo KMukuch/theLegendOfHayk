@@ -2,6 +2,7 @@
 #define CONFIG_H
 
 #define MAXNAME 50
+#define MAXLINE 100
 
 typedef enum 
 {

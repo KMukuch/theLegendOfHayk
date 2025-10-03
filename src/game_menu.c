@@ -14,7 +14,7 @@ void show_main_menu()
 
 Menu_Command_Type identify_menu_command(const char *command)
 {
-    char *trimmed_command;
+    char trimmed_command[MAXLINE];
     strtrim(trimmed_command, command);
 
     if (strcmp(trimmed_command, "start") == 0) return MENU_START;
