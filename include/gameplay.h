@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include "config.h"
-#include "utils.h"
+#include "unit_utils.h"
 
 #define MAXHEALTH 100
 #define MAXLINE 100
@@ -20,7 +20,7 @@ struct Item
 };
 
 struct Player create_player();
-CommandType identify_command(const char *command);
+Game_Command_Type identify_game_command(const char *command);
 // void parse_and_execute_command(char *command);
 // void move_player();
 // void inspect_object();

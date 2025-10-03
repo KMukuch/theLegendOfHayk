@@ -5,7 +5,7 @@
 #include <math.h>
 #include <cjson/cJSON.h>
 #include "config.h"
-#include "utils.h"
+#include "unit_utils.h"
 #include "game_clock.h"
 
 struct Game_Clock init_game_clock()

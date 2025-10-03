@@ -5,7 +5,7 @@
 #include <math.h>
 #include <cjson/cJSON.h>
 #include "config.h"
-#include "utils.h"
+#include "unit_utils.h"
 #include "game_clock.h"
 #include "gameplay.h"
 
@@ -19,22 +19,21 @@ struct Player create_player()
     return player;
 }
 
-CommandType identify_command(const char *command)
+Game_Command_Type identify_game_command(const char *command)
 {
-    if (strcmp(command, "start") == 0) return START;
-    if (strcmp(command, "go") == 0) return MOVE;
-    if (strcmp(command, "look") == 0) return LOOK;
-    if (strcmp(command, "where") == 0) return WHERE;
-    if (strcmp(command, "map") == 0) return MAP;
-    if (strcmp(command, "quit") == 0) return QUIT;
+    if (strcmp(command, "go") == 0) return GAME_MOVE;
+    if (strcmp(command, "look") == 0) return GAME_LOOK;
+    if (strcmp(command, "where") == 0) return GAME_WHERE;
+    if (strcmp(command, "map") == 0) return GAME_MAP;
+    if (strcmp(command, "quit") == 0) return GAME_QUIT;
     
-    return UNKNOWN;
+    return GAME_UNKNOWN;
 }
 
-// CommandType parse_and_execute_command(const char *command)
+// Game_Command_Type parse_and_execute_command(const char *command)
 // {
 //     char *key = srttok(command, ' ');
-//     CommandType command_type = identify_command(key[0]);
+//     Game_Command_Type command_type = identify_command(key[0]);
 //     if(command_type == MOVE)
 //     {
 

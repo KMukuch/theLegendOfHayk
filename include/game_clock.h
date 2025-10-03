@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include "config.h"
-#include "utils.h"
+#include "unit_utils.h"
 
 struct Game_Clock 
 {

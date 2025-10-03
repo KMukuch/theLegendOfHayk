@@ -19,15 +19,19 @@ typedef enum
 } Day_Cycle_Type;
 
 typedef enum {
-    UNKNOWN,
-    START,
-    NEW,
-    LOAD,
-    MOVE,
-    LOOK,
-    WHERE,
-    MAP,
-    QUIT
-} CommandType;
+    MENU_UNKNOWN,
+    MENU_START,
+    MENU_LOAD,
+    MENU_QUIT
+} Menu_Command_Type;
+
+typedef enum {
+    GAME_UNKNOWN,
+    GAME_MOVE,
+    GAME_LOOK,
+    GAME_WHERE,
+    GAME_MAP,
+    GAME_QUIT
+} Game_Command_Type;
 
 #endif
