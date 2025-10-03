@@ -28,11 +28,7 @@ int main()
     //     }
     // }
 
-    for (int i = 0; i < game_map[0].game_map_size; i++) 
-    {
-        free(game_map[i].connections);
-    }
-    free(game_map);
+    free_game_map(game_map);
 
     return 0;
 }

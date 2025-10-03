@@ -126,30 +126,11 @@ struct Location* init_game_map()
     return game_map;
 }
 
-// cJSON* find_nodes(cJSON *json)
-// {
-//     cJSON *json_nodes = NULL;
-//     if (!json)
-//     {
-//         printf("Failed to load JSON file!\n");
-//         return NULL;
-//     }
-    
-//     json_nodes = cJSON_GetObjectItemCaseSensitive(json, "name");
-
-//     return json_nodes;
-// }
-
-// cJSON* find_connections(cJSON *json)
-// {
-//     cJSON *json_connection = NULL;
-//     if (!json)
-//     {
-//         printf("Failed to load JSON file!\n");
-//         return NULL;
-//     }
-    
-//     json_connection = cJSON_GetObjectItemCaseSensitive(json, "connection");
-
-//     return json_connection;
-// }
+void free_game_map(struct Location *game_map)
+{
+    for (int i = 0; i < game_map[0].game_map_size; i++) 
+    {
+        free(game_map[i].connections);
+    }
+    free(game_map);
+}
