@@ -17,6 +17,7 @@ int main()
     struct Location *game_map = init_game_map();
     struct NPC *game_npc = init_game_npc(game_map);
     struct Player player = create_player();
+    struct Game_Script_Manager game_script_manager = create_game_script_manager();
 
     printf("%s\n", load_game_title());
     getchar();
@@ -26,7 +27,7 @@ int main()
     {
         if(identify_menu_command(buffer) == MENU_START)
         {
-            printf("%s\n", load_game_openning_script());
+            run_game_script_manager(&game_script_manager);
         }
         fgets(buffer, MAXLINE, stdin);
     }
