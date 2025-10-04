@@ -2,19 +2,21 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-#include <math.h>
 #include <cjson/cJSON.h>
 #include "config.h"
 #include "unit_utils.h"
 #include "game_clock.h"
 #include "gameplay.h"
 
-struct Player create_player()
+struct Player create_player(char player_name[MAXNAME])
 {
     struct Player player;
 
-    player.current_location = NULL;
+    strcpy(player.player_name, player_name);
     player.health = MAXHEALTH;
+    player.damage = MINDAMAGE;
+    player.armor = MINARMOR;
+    player.current_location = NULL;
 
     return player;
 }

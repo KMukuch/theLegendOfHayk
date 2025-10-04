@@ -25,7 +25,9 @@ void advance_game_script(struct Game_Script_Manager *game_script_manager)
     {
         game_script_manager->current_script_id++;
     } else
+    {
         game_script_manager->script_command_type = SCRIPT_END;
+    }
 }
 
 void run_game_script_manager(struct Game_Script_Manager *game_script_manager)
@@ -36,8 +38,10 @@ void run_game_script_manager(struct Game_Script_Manager *game_script_manager)
         printf("%s\n", script_content);
         advance_game_script(game_script_manager);
         free_script_content(script_content);
+    } else 
+    {
+        game_script_manager->script_command_type = SCRIPT_END;
     }
-        
 }
 
 char* load_game_title()

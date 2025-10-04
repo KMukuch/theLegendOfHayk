@@ -6,19 +6,27 @@
 #include "unit_utils.h"
 
 #define MAXHEALTH 100
+#define MINDAMAGE 5
+#define MINARMOR 1
+#define MAXITEM 20
 
 struct Player
 {
-    struct Location *current_location;
+    char player_name[MAXNAME];
     int health;
+    int damage;
+    int armor;
+    struct Location *current_location;
+    struct Item inventory[MAXITEM];
 };
 
 struct Item
 {
+    Item_Type item_type;
     char item_name[MAXNAME];
 };
 
-struct Player create_player();
+struct Player create_player(char player_name[MAXNAME]);
 Game_Command_Type identify_game_command(const char *command);
 // void parse_and_execute_command(char *command);
 // void move_player();

@@ -41,4 +41,11 @@ typedef enum {
     GAME_QUIT
 } Game_Command_Type;
 
+typedef enum {
+    ITEM_UNKNOWN,
+    ITEM_DAMAGE,
+    ITEM_ARMOR,
+    ITEM_HEALTH
+} Item_Type;
+
 #endif
