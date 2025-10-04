@@ -27,6 +27,12 @@ typedef enum {
 } Menu_Command_Type;
 
 typedef enum {
+    SCRIPT_UNKNOWN,
+    SCRIPT_LOAD,
+    SCRIPT_END
+} Script_Command_Type;
+
+typedef enum {
     GAME_UNKNOWN,
     GAME_MOVE,
     GAME_LOOK,

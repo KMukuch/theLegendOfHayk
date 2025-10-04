@@ -7,7 +7,7 @@
 struct Game_Script_Manager
 {
     int current_script_id;
-    bool script_read_flag;
+    Script_Command_Type script_command_type;
 };
 
 struct Game_Script_Manager create_game_script_manager();

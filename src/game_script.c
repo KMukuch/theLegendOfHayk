@@ -14,30 +14,30 @@ struct Game_Script_Manager create_game_script_manager()
     struct Game_Script_Manager game_script_manager;
 
     game_script_manager.current_script_id = 0;
-    game_script_manager.script_read_flag = false;
+    game_script_manager.script_command_type = SCRIPT_LOAD;
 
     return game_script_manager;
 }
 
 void advance_game_script(struct Game_Script_Manager *game_script_manager)
 {
-    if(game_script_manager->script_read_flag)
+    if(game_script_manager->script_command_type == SCRIPT_LOAD)
     {
         game_script_manager->current_script_id++;
-        game_script_manager->script_read_flag = false;
-    }
+    } else
+        game_script_manager->script_command_type = SCRIPT_END;
 }
 
 void run_game_script_manager(struct Game_Script_Manager *game_script_manager)
 {
     char *script_content = load_game_script(game_script_manager->current_script_id);
-    if (script_content != NULL)
+    if (script_content != NULL && game_script_manager->script_command_type == SCRIPT_LOAD)
     {
         printf("%s\n", script_content);
-        game_script_manager->script_read_flag = true;
         advance_game_script(game_script_manager);
         free_script_content(script_content);
     }
+        
 }
 
 char* load_game_title()

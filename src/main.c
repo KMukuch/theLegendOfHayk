@@ -27,7 +27,10 @@ int main()
     {
         if(identify_menu_command(buffer) == MENU_START)
         {
-            run_game_script_manager(&game_script_manager);
+            if(game_script_manager.script_command_type != SCRIPT_END)
+            {
+                run_game_script_manager(&game_script_manager);
+            }
         }
         fgets(buffer, MAXLINE, stdin);
     }
