@@ -9,13 +9,13 @@
 
 #define FILENAME "../data/game_map.json"
 
-struct Location create_location(const char  *location_name, int size, Location_Type location_type)
+struct Location create_location(const char  *location_name, int size)
 {
     struct Location loc;
 
     strcpy(loc.location_name, location_name);
+    loc.start_flag = false;
     loc.game_map_size = size;
-    loc.location_type = location_type;
     loc.connections = NULL;
     loc.connections_count = 0;
 
@@ -36,14 +36,6 @@ void set_connection(struct Location *location, struct Location_Connection *locat
 {
     location->connections = location_connection;
     location->connections_count = size;
-}
-
-Location_Type parse_location_type(const char *type_str)
-{
-    if (strcmp(type_str, "REGION") == 0) return REGION;
-    if (strcmp(type_str, "CITY") == 0) return CITY;
-    if (strcmp(type_str, "VILLAGE") == 0) return VILLAGE;
-    return DEFAULT;
 }
 
 struct Location* init_game_map()
@@ -69,11 +61,16 @@ struct Location* init_game_map()
     {
         cJSON *json_item = cJSON_GetArrayItem(json_file, i);
         cJSON *json_node = cJSON_GetObjectItemCaseSensitive(json_item, "node");
-        cJSON *json_type = cJSON_GetObjectItemCaseSensitive(json_item, "type");
-        if (cJSON_IsString(json_node) && json_node->valuestring != NULL && cJSON_IsString(json_type) && json_type->valuestring != NULL) 
+        cJSON *json_start_flag = cJSON_GetObjectItemCaseSensitive(json_item, "start");
+        if (cJSON_IsString(json_node) && json_node->valuestring != NULL) 
         {
-            game_map[i] = create_location(json_node->valuestring, game_map_size, parse_location_type(json_type->valuestring));
+            game_map[i] = create_location(json_node->valuestring, game_map_size);
         }
+        if (cJSON_IsBool(json_start_flag) && cJSON_IsTrue(json_start_flag)) 
+        {
+            game_map[i].start_flag = true;
+        }
+        
     }
 
     for (int i = 0; i < game_map_size; i++)

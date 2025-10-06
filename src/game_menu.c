@@ -12,7 +12,23 @@ void show_main_menu()
     printf("3. Quit\n");
 }
 
-Menu_Command_Type identify_menu_command(const char *command)
+// void show_command_options()
+// {
+//     printf("=== Command Options ===\n");
+//     printf("1. go [node] — go to the next node");
+//     printf("2. look — get a description of your current location\n");
+//     printf("3. where — show your current location\n");
+//     printf("4. map — show your current location on the global map\n");
+// }
+
+// void show_dialogue_menu()
+// {
+//     printf("=== Dualogue Menu ===\n");
+//     printf("1. Continue");
+//     printf("2. Quit\n");
+// }
+
+Menu_Command_Type identify_main_menu_command(const char *command)
 {
     char trimmed_command[MAXLINE];
     strtrim(trimmed_command, command);
@@ -23,26 +39,3 @@ Menu_Command_Type identify_menu_command(const char *command)
     
     return MENU_UNKNOWN;
 }
-
-// Menu_Command_Type parse_menu_command()
-// {
-//     Menu_Command_Type menu_command = UNKNOWN;
-
-//     if(menu_command == MOVE)
-//     {
-
-//     } else if(menu_command == LOOK)
-//     {
-
-//     } else if(menu_command == WHERE)
-//     {
-
-//     } else if(menu_command == MAP)
-//     {
-
-//     } else if(menu_command == QUIT)
-//     {
-//         return QUIT;
-//     }
-//     return menu_command;
-// }

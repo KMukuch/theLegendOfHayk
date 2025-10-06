@@ -24,9 +24,6 @@ void advance_game_script(struct Game_Script_Manager *game_script_manager)
     if(game_script_manager->script_command_type == SCRIPT_LOAD)
     {
         game_script_manager->current_script_id++;
-    } else
-    {
-        game_script_manager->script_command_type = SCRIPT_END;
     }
 }
 

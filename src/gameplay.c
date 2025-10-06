@@ -4,53 +4,55 @@
 #include <string.h>
 #include <cjson/cJSON.h>
 #include "config.h"
+#include "input_utils.h"
 #include "unit_utils.h"
 #include "game_clock.h"
 #include "gameplay.h"
 
-struct Player create_player(char player_name[MAXNAME])
+struct Player create_player()
 {
     struct Player player;
 
-    strcpy(player.player_name, player_name);
     player.health = MAXHEALTH;
     player.damage = MINDAMAGE;
     player.armor = MINARMOR;
     player.current_location = NULL;
+    player.game_command_type = GAME_UNKNOWN;
 
     return player;
 }
 
+void set_player_start_location(struct Player *player, struct Location *game_map, int game_map_size)
+{
+    for(int i = 0; i < game_map_size; i++)
+    {
+        if(game_map[i].start_flag)
+        {
+            player->current_location = &game_map[i];
+        }
+    }
+}
+
 Game_Command_Type identify_game_command(const char *command)
 {
-    if (strcmp(command, "go") == 0) return GAME_MOVE;
-    if (strcmp(command, "look") == 0) return GAME_LOOK;
-    if (strcmp(command, "where") == 0) return GAME_WHERE;
-    if (strcmp(command, "map") == 0) return GAME_MAP;
-    if (strcmp(command, "quit") == 0) return GAME_QUIT;
+    char trimmed_command[MAXLINE];
+    strtrim(trimmed_command, command);
+
+    if (strcmp(trimmed_command, "go") == 0) return GAME_GO;
+    if (strcmp(trimmed_command, "look") == 0) return GAME_LOOK;
+    if (strcmp(trimmed_command, "where") == 0) return GAME_WHERE;
+    if (strcmp(trimmed_command, "map") == 0) return GAME_MAP;
+    if (strcmp(trimmed_command, "quit") == 0) return GAME_QUIT;
     
     return GAME_UNKNOWN;
 }
 
-// Game_Command_Type parse_and_execute_command(const char *command)
-// {
-//     char *key = srttok(command, ' ');
-//     Game_Command_Type command_type = identify_command(key[0]);
-//     if(command_type == MOVE)
-//     {
-
-//     } else if(command_type == LOOK)
-//     {
-
-//     } else if(command_type == WHERE)
-//     {
-
-//     } else if(command_type == MAP)
-//     {
-
-//     } else if(command_type == QUIT)
-//     {
-//         return QUIT;
-//     }
-//     return UNKNOWN;
-// }
+void parse_and_execute_command(const char *command, struct Player *player)
+{
+    Game_Command_Type command_type = identify_game_command(command);
+    player->game_command_type = command_type;
+    if(command_type == GAME_WHERE)
+    {
+        printf("Your current location: %s", player->current_location->location_name);
+    }
+}

@@ -262,7 +262,7 @@ The game is designed to give a time experience of the real world. With each play
 
 ### Movement & Exploration
 
-- `go [direction]` — Move north, south, east, west, up, down
+- `go [node]` — go to the next node
 - `look` — Describe the current location
 - `where` — Show your current location
 - `map` — (Optional) Show map coordinates or info

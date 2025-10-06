@@ -1,83 +1,64 @@
 [
   {
     "node": "Babylon",
-    "type": "CITY",
-    "connection": [
-      { "node": "Nippur", "type": "CITY", "distance": 18 },
-      { "node": "Eshnunna", "type": "CITY", "distance": 10 },
-      { "node": "Kish", "type": "CITY", "distance": 8 }
+    "map_ref": "babylon.json",
+    "connections": [
+      { "node": "Nippur", "distance": 18 }
     ]
   },
   {
     "node": "Nippur",
-    "type": "CITY",
-    "connection": [
-      { "node": "Babylon", "type": "CITY", "distance": 18 },
-      { "node": "Eshnunna", "type": "CITY", "distance": 20 },
-      { "node": "Kish", "type": "CITY", "distance": 15 }
-    ]
-  },
-  {
-    "node": "Eshnunna",
-    "type": "CITY",
-    "connection": [
-      { "node": "Babylon", "type": "CITY", "distance": 10 },
-      { "node": "Nippur", "type": "CITY", "distance": 20 }
-    ]
-  },
-  {
-    "node": "Kish",
-    "type": "CITY",
-    "connection": [
-      { "node": "Babylon", "type": "CITY", "distance": 8 },
-      { "node": "Nippur", "type": "CITY", "distance": 15 }
+    "map_ref": "nippur.json",
+    "connections": [
+      { "node": "Babylon", "distance": 18 }
     ]
   },
   {
     "node": "Tushpa",
-    "type": "CITY",
-    "connection": [
-      { "node": "Tushpa Village", "type": "VILLAGE", "distance": 2 },
-      { "node": "Babylon", "type": "CITY", "distance": 100 },
-      { "node": "Ararat Foothills Village", "type": "VILLAGE", "distance": 60 }
+    "map_ref": "tushpa.json",
+    "connections": [
+      { "node": "Tushpa Village", "distance": 2 },
+      { "node": "Babylon", "distance": 100 },
+      { "node": "Ararat Foothills Village", "distance": 60 }
     ]
   },
   {
     "node": "Tushpa Village",
-    "type": "VILLAGE",
-    "connection": [
-      { "node": "Tushpa", "type": "CITY", "distance": 2 }
+    "map_ref": "tushpa_village.json",
+    "connections": [
+      { "node": "Tushpa", "distance": 2 }
     ]
   },
   {
     "node": "Ararat Foothills Village",
-    "type": "VILLAGE",
-    "connection": [
-      { "node": "Tushpa", "type": "CITY", "distance": 60 },
-      { "node": "Sevan Village", "type": "VILLAGE", "distance": 12 }
+    "start": true,
+    "map_ref": "ararat_foothills_village.json",
+    "connections": [
+      { "node": "Tushpa", "distance": 60 },
+      { "node": "Sevan Village", "distance": 12 }
     ]
   },
   {
     "node": "Sevan Village",
-    "type": "VILLAGE",
-    "connection": [
-      { "node": "Ararat Foothills Village", "type": "VILLAGE", "distance": 12 },
-      { "node": "Caucasus Village", "type": "VILLAGE", "distance": 15 }
+    "map_ref": "sevan_village.json",
+    "connections": [
+      { "node": "Ararat Foothills Village", "distance": 12 },
+      { "node": "Caucasus Village", "distance": 15 }
     ]
   },
   {
     "node": "Mtskheta",
-    "type": "CITY",
-    "connection": [
-      { "node": "Caucasus Village", "type": "VILLAGE", "distance": 3 },
-      { "node": "Sevan Village", "type": "VILLAGE", "distance": 15 }
+    "map_ref": "mtskheta.json",
+    "connections": [
+      { "node": "Caucasus Village", "distance": 3 },
+      { "node": "Sevan Village", "distance": 15 }
     ]
   },
   {
     "node": "Caucasus Village",
-    "type": "VILLAGE",
-    "connection": [
-      { "node": "Mtskheta", "type": "CITY", "distance": 3 }
+    "map_ref": "caucasus_village.json",
+    "connections": [
+      { "node": "Mtskheta", "distance": 3 }
     ]
-  },
+  }
 ]

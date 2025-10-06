@@ -4,15 +4,6 @@
 #define MAXNAME 50
 #define MAXLINE 100
 
-typedef enum 
-{
-    DEFAULT,
-    REGION,
-    CITY,
-    VILLAGE,
-    PLACE
-} Location_Type;
-
 typedef enum
 {
     DAY,
@@ -34,7 +25,7 @@ typedef enum {
 
 typedef enum {
     GAME_UNKNOWN,
-    GAME_MOVE,
+    GAME_GO,
     GAME_LOOK,
     GAME_WHERE,
     GAME_MAP,
