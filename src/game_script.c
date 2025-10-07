@@ -29,11 +29,25 @@ void advance_game_script(struct Game_Script_Manager *game_script_manager)
 
 void run_game_script_manager(struct Game_Script_Manager *game_script_manager)
 {
-    char *script_content = load_game_script(game_script_manager->current_script_id);
-    if (script_content != NULL && game_script_manager->script_command_type == SCRIPT_LOAD)
+    if (game_script_manager->script_command_type == SCRIPT_LOAD)
     {
-        printf("%s\n", script_content);
-        advance_game_script(game_script_manager);
+        bool pause_flag;
+        char *script_content = load_game_script(game_script_manager->current_script_id, &pause_flag);
+
+        if(script_content != NULL)
+        {
+            printf("%s\n", script_content);
+            getchar();
+        }
+        
+        if (pause_flag)
+        {
+            game_script_manager->script_command_type = SCRIPT_PAUSE;
+        } else
+        {
+            advance_game_script(game_script_manager);
+        }
+        
         free_script_content(script_content);
     } else 
     {
@@ -74,7 +88,7 @@ char* load_game_title()
     return title;
 }
 
-char* load_game_script(const int id)
+char* load_game_script(const int id, bool *pause_flag)
 {
     bool script_flag = false;
 
@@ -93,6 +107,7 @@ char* load_game_script(const int id)
             {
                 script_flag = true;
                 cJSON *json_script_item_content = cJSON_GetObjectItemCaseSensitive(json_script_item, "content");
+                cJSON *json_script_pause = cJSON_GetObjectItemCaseSensitive(json_script_item, "pause");
                 if (cJSON_IsString(json_script_item_content) && json_script_item_content->valuestring != NULL)
                 {
                     int script_content_size = strlen(json_script_item_content->valuestring);
@@ -104,6 +119,13 @@ char* load_game_script(const int id)
                         return NULL;
                     }
                     strcpy(content, json_script_item_content->valuestring);
+                }
+                if (cJSON_IsBool(json_script_pause))
+                {
+                    *pause_flag = cJSON_IsTrue(json_script_pause);
+                } else
+                {
+                    *pause_flag = false;
                 }
             }
         }

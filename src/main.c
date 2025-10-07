@@ -13,33 +13,75 @@ int main()
 {
     char buffer[MAXLINE];
 
+    Game_State game_state = STATE_MENU;
+
     struct Game_Clock game_clock = init_game_clock();
     struct Location *game_map = init_game_map();
     struct NPC *game_npc = init_game_npc(game_map);
-
     struct Player player = create_player();
     struct Game_Script_Manager game_script_manager = create_game_script_manager();
 
     printf("%s\n", load_game_title());
     getchar();
-    show_main_menu();
-    fgets(buffer, MAXLINE, stdin);
-    while(identify_main_menu_command(buffer) != MENU_QUIT)
+
+    while (game_state != STATE_QUIT)
     {
-        if(identify_main_menu_command(buffer) == MENU_START)
+        if (game_state == STATE_MENU)
         {
-            set_player_start_location(&player, game_map, game_map[0].game_map_size);
-            while(game_script_manager.script_command_type != SCRIPT_END)
+            show_main_menu();
+            if (fgets(buffer, MAXLINE, stdin))
             {
-                run_game_script_manager(&game_script_manager);
-                while(player.game_command_type != GAME_QUIT)
+                int cmd = identify_main_menu_command(buffer);
+                if (cmd == MENU_START)
                 {
-                    fgets(buffer, MAXLINE, stdin);
-                    parse_and_execute_command(buffer, &player);
+                    set_player_start_location(&player, game_map, game_map[0].game_map_size);
+                    game_state = STATE_SCRIPT;
+                }
+                else if (cmd == MENU_QUIT)
+                {
+                    game_state = STATE_QUIT;
+                }
+                else
+                {
+                    game_state = STATE_MENU;
+                }
+                
+            }
+        }
+        else if (game_state == STATE_SCRIPT)
+        {
+            run_game_script_manager(&game_script_manager);
+
+            if (game_script_manager.script_command_type == SCRIPT_PAUSE)
+            {
+                game_state = STATE_PLAYING;
+            }
+            else
+            {
+                game_state = STATE_SCRIPT;
+            }
+        }
+        else if (game_state == STATE_PLAYING)
+        {
+            printf("> ");
+            if (fgets(buffer, MAXLINE, stdin))
+            {
+                parse_and_execute_command(buffer, &player);
+
+                if (player.game_command_type == GAME_MENU)
+                {
+                    game_state = STATE_MENU;
+                }
+                else
+                {
+                    game_state = STATE_PLAYING;
                 }
             }
         }
-        fgets(buffer, MAXLINE, stdin);
+        else
+        {
+            game_state = STATE_QUIT;
+        }
     }
 
     free_game_npc(game_npc);

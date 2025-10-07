@@ -16,6 +16,7 @@ struct Location create_location(const char  *location_name, int size)
     strcpy(loc.location_name, location_name);
     loc.start_flag = false;
     loc.game_map_size = size;
+    loc.local_map = NULL;
     loc.connections = NULL;
     loc.connections_count = 0;
 

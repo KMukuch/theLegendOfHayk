@@ -11,6 +11,13 @@ typedef enum
 } Day_Cycle_Type;
 
 typedef enum {
+    STATE_MENU,
+    STATE_SCRIPT,
+    STATE_PLAYING,
+    STATE_QUIT
+} Game_State;
+
+typedef enum {
     MENU_UNKNOWN,
     MENU_START,
     MENU_LOAD,
@@ -20,6 +27,7 @@ typedef enum {
 typedef enum {
     SCRIPT_UNKNOWN,
     SCRIPT_LOAD,
+    SCRIPT_PAUSE,
     SCRIPT_END
 } Script_Command_Type;
 
@@ -29,7 +37,7 @@ typedef enum {
     GAME_LOOK,
     GAME_WHERE,
     GAME_MAP,
-    GAME_QUIT
+    GAME_MENU
 } Game_Command_Type;
 
 typedef enum {

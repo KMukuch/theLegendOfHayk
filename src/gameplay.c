@@ -42,7 +42,7 @@ Game_Command_Type identify_game_command(const char *command)
     if (strcmp(trimmed_command, "look") == 0) return GAME_LOOK;
     if (strcmp(trimmed_command, "where") == 0) return GAME_WHERE;
     if (strcmp(trimmed_command, "map") == 0) return GAME_MAP;
-    if (strcmp(trimmed_command, "quit") == 0) return GAME_QUIT;
+    if (strcmp(trimmed_command, "menu") == 0) return GAME_MENU;
     
     return GAME_UNKNOWN;
 }

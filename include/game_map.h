@@ -11,6 +11,7 @@ struct Location
     char location_name[MAXNAME];
     bool start_flag;
     int game_map_size;
+    struct Location *local_map;
     struct Location_Connection *connections;
     int connections_count;
 };
