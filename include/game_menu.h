@@ -5,7 +5,7 @@
 #include "menu.h"
 
 void show_main_menu();
-// void show_command_options();
+void show_command_menu();
 // void show_dialogue_menu();
 Menu_Command_Type identify_main_menu_command(const char *command);
 

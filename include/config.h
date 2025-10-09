@@ -36,7 +36,8 @@ typedef enum {
     GAME_GO,
     GAME_LOOK,
     GAME_WHERE,
-    GAME_MAP,
+    GAME_MAP_LOCAL,
+    GAME_MAP_GLOBAL,
     GAME_MENU
 } Game_Command_Type;
 

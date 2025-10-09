@@ -29,6 +29,7 @@ int main()
         if (game_state == STATE_MENU)
         {
             show_main_menu();
+            printf("> ");
             if (fgets(buffer, MAXLINE, stdin))
             {
                 int cmd = identify_main_menu_command(buffer);
@@ -63,10 +64,11 @@ int main()
         }
         else if (game_state == STATE_PLAYING)
         {
+            show_command_menu();
             printf("> ");
             if (fgets(buffer, MAXLINE, stdin))
             {
-                parse_and_execute_command(buffer, &player);
+                parse_and_execute_command(buffer, &player, game_map, game_map[0].game_map_size);
 
                 if (player.game_command_type == GAME_MENU)
                 {

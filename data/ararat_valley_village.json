@@ -1,0 +1,58 @@
+[
+    {
+        "node": "Gate",
+        "connections": [
+            { "node": "Main square", "distance": 1 },
+            { "node": "Exit", "distance": 1 }
+        ]
+    },
+    {
+        "node": "Main square",
+        "connections": [
+            { "node": "Gate", "distance": 1 },
+            { "node": "Pottery", "distance": 1 },
+            { "node": "Local market", "distance": 1 },
+            { "node": "Shrine", "distance": 1 }
+        ]
+    },
+    {
+        "node": "Pottery",
+        "connections": [
+            { "node": "Main square", "distance": 1 },
+            { "node": "Local market", "distance": 1 },
+            { "node": "Shrine", "distance": 1 }
+        ]
+    },
+    {
+        "node": "Local market",
+        "connections": [
+            { "node": "Main square", "distance": 1 },
+            { "node": "Pottery", "distance": 1 },
+            { "node": "Shrine", "distance": 1 }
+        ]
+    },
+    {
+        "node": "Shrine",
+        "start": true,
+        "connections": [
+            { "node": "Main square", "distance": 1 },
+            { "node": "Pottery", "distance": 1 },
+            { "node": "Local market", "distance": 1 },
+            { "node": "Forest path", "distance": 2 }
+        ]
+    },
+    {
+        "node": "Forest path",
+        "connections": [
+            { "node": "Shrine", "distance": 2 },
+            { "node": "Exit", "distance": 3 }
+        ]
+    },
+    {
+        "node": "Exit",
+        "connections": [
+            { "node": "Gate", "distance": 1 },
+            { "node": "Forest path", "distance": 3 }
+        ]
+    }
+]
