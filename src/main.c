@@ -16,7 +16,7 @@ int main()
     Game_State game_state = STATE_MENU;
 
     struct Game_Clock game_clock = init_game_clock();
-    struct Location *game_map = init_game_map();
+    struct Maps game_maps = init_game_map();
     struct NPC *game_npc = init_game_npc(game_map);
     struct Player player = create_player();
     struct Game_Script_Manager game_script_manager = create_game_script_manager();

@@ -48,39 +48,15 @@ Game_Command_Type identify_game_command(const char *command)
     return GAME_UNKNOWN;
 }
 
-void parse_and_execute_command(const char *command, struct Player *player, const struct Location *game_map, int game_map_size)
+void parse_and_execute_command(const char *command, struct Player *player, const struct Maps *game_maps)
 {
     Game_Command_Type command_type = identify_game_command(command);
     player->game_command_type = command_type;
     if(command_type == GAME_MAP_GLOBAL)
     {
-        for(int i = 0; i < game_map_size; i++)
+        for (int i = 0; i < game_maps->map_array_size; i++)
         {
-            printf("%s\n", game_map[i].location_name);
-            printf("Connections (%i)\n", game_map[i].connections_count);
-            for(int j = 0; j < game_map[i].connections_count; j++)
-            {
-                printf("-> %s (distance: %d)\n", game_map[i].connections[j].location->location_name, game_map[i].connections[j].connection_distance);
-            }
-        }
-    } else if(command_type == GAME_MAP_LOCAL)
-    {
-        for(int i = 0; i < game_map_size; i++)
-        {
-            if (game_map[i].local_map != NULL)
-            {
-                for (int k = 0; k < game_map[i].local_map_size; k++)
-                {
-                    printf("%s\n", game_map[i].local_map[k].location_name);
-                    printf("Connections (%i):\n", game_map[i].local_map[k].connections_count);
-                    for (int j = 0; j < game_map[i].local_map[k].connections_count; j++)
-                    {
-                        printf("-> %s (distance: %d)\n", 
-                            game_map[i].local_map[k].connections[j].location->location_name, 
-                            game_map[i].local_map[k].connections[j].connection_distance);
-                    }
-                }
-            }
+            printf("%s\n", game_maps->map_array[i].map_name);
         }
     } else if(command_type == GAME_WHERE)
     {
