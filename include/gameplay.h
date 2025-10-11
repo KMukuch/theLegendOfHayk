@@ -30,9 +30,9 @@ struct Player
 
 struct Player create_player();
 Game_Command_Type identify_game_command(const char *command);
-void set_player_start_location(struct Player *player, struct Location *game_map, int game_map_size);
+void set_player_start_location(struct Player *player, const struct Maps *game_maps);
 Game_Command_Type identify_game_command(const char *command);
-void parse_and_execute_command(const char *command, struct Player *player, const struct Location *game_map, int game_map_size);
+void parse_and_execute_command(const char *command, struct Player *player, const struct Maps *game_maps);
 // void move_player(struct Player *player);
 // void inspect_object();
 // void attack_enemy();

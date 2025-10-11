@@ -45,12 +45,13 @@ struct Location_Connection create_connection(const struct Location *location, in
 void set_connection(struct Location *location, struct Location_Connection *location_connection, int size);
 
 struct Map create_map(const char *map_name, const char *map_ref);
-struct Maps create_maps(const struct Map *map_array, int map_array_size);
+struct Maps create_maps(struct Map *map_array, int map_array_size);
 
 struct Map* create_game_map(cJSON *json_file);
 struct Maps init_game_map();
 
 struct Location* find_game_location_by_name(const char location_name[MAXNAME], struct Location *location_array, int location_array_size);
+const struct Location* find_location_in_maps_by_name(const char location_name[MAXNAME], const struct Maps *maps);
 
 void free_game_map(struct Maps *maps);
 

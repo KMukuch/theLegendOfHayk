@@ -5,6 +5,7 @@
 #include <cjson/cJSON.h>
 #include "config.h"
 #include "json_utils.h"
+#include "game_map.h"
 #include "npc.h"
 
 #define FILENAME "../data/game_npc.json"
@@ -53,7 +54,7 @@ int get_game_npc_size()
     return game_npc_size;
 }
 
-struct NPC* init_game_npc(const struct Location *game_map)
+struct NPC* init_game_npc(const struct Maps *game_maps)
 {
     int i, game_npc_size;
     struct NPC *game_npc;
@@ -70,7 +71,12 @@ struct NPC* init_game_npc(const struct Location *game_map)
         if(cJSON_IsString(json_name) && json_name->valuestring != NULL)
         {
             game_npc[i] = create_npc(json_name->valuestring);
-            set_npc_location_by_name(json_item, &game_npc[i], game_map, game_map[0].game_map_size);
+
+            cJSON *json_location_name = cJSON_GetObjectItemCaseSensitive(json_item, "location");
+            if(cJSON_IsString(json_location_name) && json_location_name->valuestring != NULL)
+            {
+                game_npc[i].current_location = find_location_in_maps_by_name(json_location_name->valuestring, game_maps);
+            }
         }
         i++;
     }

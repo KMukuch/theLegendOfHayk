@@ -17,7 +17,7 @@ int main()
 
     struct Game_Clock game_clock = init_game_clock();
     struct Maps game_maps = init_game_map();
-    struct NPC *game_npc = init_game_npc(game_map);
+    struct NPC *game_npc = init_game_npc(&game_maps);
     struct Player player = create_player();
     struct Game_Script_Manager game_script_manager = create_game_script_manager();
 
@@ -35,7 +35,7 @@ int main()
                 int cmd = identify_main_menu_command(buffer);
                 if (cmd == MENU_START)
                 {
-                    set_player_start_location(&player, game_map, game_map[0].game_map_size);
+                    set_player_start_location(&player, &game_maps);
                     game_state = STATE_SCRIPT;
                 }
                 else if (cmd == MENU_QUIT)
@@ -68,7 +68,7 @@ int main()
             printf("> ");
             if (fgets(buffer, MAXLINE, stdin))
             {
-                parse_and_execute_command(buffer, &player, game_map, game_map[0].game_map_size);
+                parse_and_execute_command(buffer, &player, &game_maps);
 
                 if (player.game_command_type == GAME_MENU)
                 {
@@ -87,7 +87,7 @@ int main()
     }
 
     free_game_npc(game_npc);
-    free_game_map(game_map);
+    free_game_map(&game_maps);
 
     return 0;
 }

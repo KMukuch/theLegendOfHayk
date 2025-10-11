@@ -49,7 +49,7 @@ struct Map create_map(const char  *map_name, const char *map_ref)
     return map;
 }
 
-struct Maps create_maps(const struct Map *map_array, int map_array_size)
+struct Maps create_maps(struct Map *map_array, int map_array_size)
 {
     struct Maps maps;
 
@@ -150,7 +150,7 @@ void set_connection_array(cJSON *json_file, int connection_array_size, struct Lo
                 cJSON *json_node = cJSON_GetObjectItemCaseSensitive(json_connection_item, "node");
                 cJSON *json_distance = cJSON_GetObjectItemCaseSensitive(json_connection_item, "distance");
                 
-                struct Location *target = find_game_location_by_name(json_node->valuestring, location_array, location_array_size);
+                struct Location *target = find_game_location_by_name(json_node->valuestring, location_array, connection_array_size);
                 
                 if (target && cJSON_IsNumber(json_distance)) 
                 {
@@ -194,17 +194,36 @@ struct Maps init_game_map()
     return game_maps;
 }
 
-struct Location* find_game_location_by_name(const char location_name[MAXNAME], struct Location *game_map, int game_map_size)
+struct Location* find_game_location_by_name(const char location_name[MAXNAME], struct Location *location_array, int location_array_size)
 {
     bool location_flag = false;
 
-    for(int i = 0; i < game_map_size; i++)
+    for(int i = 0; i < location_array_size; i++)
     {
-        if(strcmp(location_name, game_map[i].location_name) == 0 && !location_flag)
+        if(strcmp(location_name, location_array[i].location_name) == 0 && !location_flag)
         {
             location_flag = true;
 
-            return &game_map[i];
+            return &location_array[i];
+        }
+    }
+
+    return NULL;
+}
+
+const struct Location* find_location_in_maps_by_name(const char location_name[MAXNAME], const struct Maps *maps)
+{
+    bool location_flag = false;
+
+    for (int i = 0; i < maps->map_array_size; i++)
+    {
+        struct Map *map = &maps->map_array[i];
+        for (int j = 0; j < map->location_array_size; j++)
+        {
+            if (strcmp(map->location_array[j].location_name, location_name) == 0 && !location_flag)
+            {
+                return &map->location_array[j];
+            }
         }
     }
 

@@ -22,13 +22,17 @@ struct Player create_player()
     return player;
 }
 
-void set_player_start_location(struct Player *player, struct Location *game_map, int game_map_size)
+void set_player_start_location(struct Player *player, const struct Maps *game_maps)
 {
-    for(int i = 0; i < game_map_size; i++)
+    for (int i = 0; i < game_maps->map_array_size; i++)
     {
-        if(game_map[i].start_flag)
+        const struct Map *map = &game_maps->map_array[i];
+        for (int j = 0; j < map->location_array_size; j++)
         {
-            player->current_location = &game_map[i];
+            if (map->location_array[j].start_flag)
+            {
+                player->current_location = &map->location_array[j];
+            }
         }
     }
 }
