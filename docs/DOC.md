@@ -8,7 +8,7 @@ This project is a modular **C** program for a text-based game. The folowing docu
 - [Code Structure](#code-structure)
 - [Libraries](#libraries)
 - [Data Types and Data Structures](#data-types-and-data-structures)
-- [Flow](#flow)
+- [Workflow](#Workflow)
 - [JSON Files](#json-files)
 - [In Development](#in-development)
 
@@ -34,7 +34,7 @@ The code is split into multiple files:
 
 ## Data types and data structures
 
-## Flow
+## Workflow
 
 ## JSON Files
 
