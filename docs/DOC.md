@@ -1,4 +1,4 @@
-#Overview
+# Overview
 
 This project is a modular **C** program for a text-based game. The folowing document describes code's structure and game's logic.
 
