@@ -7,7 +7,7 @@
 #include "game_clock.h"
 #include "game_script.h"
 #include "gameplay.h"
-#include "npc.h"
+#include "game_npc.h"
 
 int main()
 {

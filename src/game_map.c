@@ -43,6 +43,7 @@ struct Map create_map(const char  *map_name, const char *map_ref)
 
     strcpy(map.map_name, map_name);
     strcpy(map.map_ref, map_ref);
+    map.map_connection_array = NULL;
     map.location_array = NULL;
     map.location_array_size = 0;
 

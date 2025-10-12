@@ -6,7 +6,7 @@
 #include "config.h"
 #include "json_utils.h"
 #include "game_map.h"
-#include "npc.h"
+#include "game_npc.h"
 
 #define FILENAME "../data/game_npc.json"
 

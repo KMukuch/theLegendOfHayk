@@ -69,9 +69,33 @@ The code is split into multiple files:
     - `GAME_MAP_GLOBAL` - 
     - `GAME_MEUN` - shows menu;
 
-- `Item_Type` 
+- `Item_Type` enum is used to identify the items found in the game. It has the folowing members:
+    - `ITEM_UKNOWN` - 
+    - `ITEM_RANGE` - used to mark distance combat items;
+    - `ITEM_MELEE` - used to mark close combat items;
+    - `ITEM_ARMOR` - used to mark armor items;
+
+- `Item_Bonus_Type` enum is used to identify item's bonus type. It has the folowing memebers:
+    - `ITEM_BONUS_UNKNOWN` - 
+    - `ITEM_BONUS_DAMAGE` - item increases atack damage;
+    - `ITEM_ARMOR` - item increases armor;
+    - `ITEM_HEALTH` - item increases health; 
 
 ### input_utils.h
+
+### json_utils.h
+
+### game_map.h
+
+#### Structs
+
+`srtuct Location
+{
+    char location_name[MAXNAME];
+    bool start_flag;
+    struct Location_Connection *connection_array;
+    int connection_array_size; 
+}``
 
 
 

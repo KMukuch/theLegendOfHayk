@@ -1,5 +1,5 @@
-#ifndef NPC_H
-#define NPC_H
+#ifndef GAME_NPC_H
+#define GAME_NPC_H
 
 #include <stdio.h>
 #include <stdbool.h>

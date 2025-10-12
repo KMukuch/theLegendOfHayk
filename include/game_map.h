@@ -24,6 +24,7 @@ struct Map
 {
     char map_name[MAXNAME];
     char map_ref[MAXLINE];
+    struct Map_Connection *map_connection_array;
     struct Location *location_array;
     int location_array_size;
 };
