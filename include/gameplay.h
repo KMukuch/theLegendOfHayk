@@ -13,8 +13,14 @@
 
 struct Item
 {
-    Item_Type item_type;
     char item_name[MAXNAME];
+    Item_Type item_type;
+};
+
+struct Player_Location
+{
+    struct Map *map;
+    struct Location *location;
 };
 
 struct Player
@@ -23,7 +29,7 @@ struct Player
     int health;
     int damage;
     int armor;
-    struct Location *current_location;
+    struct Player_Location player_location;
     struct Item inventory[MAXITEM];
     Game_Command_Type game_command_type;
 };

@@ -2,7 +2,7 @@
     {
         "name": "Vazgen",
         "id": 0,
-        "location": "Ararat Foothills Village",
+        "location": "Ararat Valley Village",
         "dialogue": [
             {
                 "id": 0,
@@ -24,7 +24,7 @@
     {
         "name": "The old man (Arsen)",
         "id": 1,
-        "location": "Ararat Foothills Village",
+        "location": "Ararat Valley Village",
         "dialogue": [
                     {
                         "id": 0,
@@ -43,7 +43,7 @@
                     },
                     {
                         "id": 3,
-                        "content": "Do not thank me. Thank the mountain that still watches over us. Now go — destiny waits for no one.",
+                        "content": "Do not thank me. Thank the mountain that still watches over us. Now go.",
                         "answer": "I’ll remember your words."
                     }
                 ]

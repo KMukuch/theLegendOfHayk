@@ -1,0 +1,24 @@
+[
+    {
+        "name": "sword_ararat_village",
+        "id": 0,
+        "description": "The sword from Ararat Valley Village",
+        "bonus": [
+            {
+                "type": 2,
+                "bonus_number": 1
+            }
+        ]
+    },
+    {
+        "name": "sling_worn",
+        "id": 1,
+        "description": "A worn sling",
+        "bonus": [
+            {
+                "type": 1,
+                "bonus_number": 1
+            }
+        ]
+    }
+]

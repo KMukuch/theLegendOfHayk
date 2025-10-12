@@ -16,7 +16,8 @@ struct Player create_player()
     player.health = MAXHEALTH;
     player.damage = MINDAMAGE;
     player.armor = MINARMOR;
-    player.current_location = NULL;
+    player.player_location.map = NULL;
+    player.player_location.location = NULL;
     player.game_command_type = GAME_UNKNOWN;
 
     return player;
@@ -26,12 +27,13 @@ void set_player_start_location(struct Player *player, const struct Maps *game_ma
 {
     for (int i = 0; i < game_maps->map_array_size; i++)
     {
-        const struct Map *map = &game_maps->map_array[i];
+        struct Map *map = &game_maps->map_array[i];
         for (int j = 0; j < map->location_array_size; j++)
         {
             if (map->location_array[j].start_flag)
             {
-                player->current_location = &map->location_array[j];
+                player->player_location.map = map;
+                player->player_location.location = &map->location_array[j];
             }
         }
     }
@@ -64,6 +66,6 @@ void parse_and_execute_command(const char *command, struct Player *player, const
         }
     } else if(command_type == GAME_WHERE)
     {
-        printf("Your current location: %s", player->current_location->location_name);
+        printf("Your current location: %s, %s", player->player_location.map->map_name, player->player_location.location->location_name);
     }
 }

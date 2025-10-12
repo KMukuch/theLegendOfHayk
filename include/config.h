@@ -43,9 +43,16 @@ typedef enum {
 
 typedef enum {
     ITEM_UNKNOWN,
-    ITEM_DAMAGE,
-    ITEM_ARMOR,
-    ITEM_HEALTH
+    ITEM_RANGE,
+    ITEM_MELEE,
+    ITEM_ARMOR
 } Item_Type;
+
+typedef enum {
+    ITEM_BONUS_UNKNOWN,
+    ITEM_BONUS_DAMAGE,
+    ITEM_BONUS_ARMOR,
+    ITEM_BONUS_HEALTH
+} Item_Bonus_Type;
 
 #endif

@@ -39,6 +39,12 @@
             { "node": "Pottery", "distance": 1 },
             { "node": "Local market", "distance": 1 },
             { "node": "Forest path", "distance": 2 }
+        ],
+        "items": [
+            {
+                "name": "sword_ararat_village",
+                "map_ref": "game_item.json"
+            }
         ]
     },
     {
@@ -46,6 +52,12 @@
         "connections": [
             { "node": "Shrine", "distance": 2 },
             { "node": "Exit", "distance": 3 }
+        ],
+        "items": [
+            {
+                "name": "sling_worn",
+                "map_ref": ""
+            }
         ]
     },
     {
