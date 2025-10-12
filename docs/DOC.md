@@ -16,16 +16,16 @@ This project is a modular **C** program for a text-based game. The folowing docu
 
 The code is split into multiple files:
 
-- 'main.c' 
-- 'config.h'
-- 'input_utils.h/c'
-- 'json_utils.h/c'
-- 'game_menu.h/c'
-- 'game_map.h/c'
-- 'game_clock.h/c'
-- 'game_script.h/c'
-- 'gameplay.h/c'
-- 'npc.h/c'
+- 'main.c' - runs game's main loop;
+- 'config.h' - contains generall constants and enums; 
+- 'input_utils.h/c' - contains variables and functions for parsing input;
+- 'json_utils.h/c' - contains variables and functions for parsing json files;
+- 'game_menu.h/c' - contains game's menus;
+- 'game_map.h/c' - contains variables and functions to initiate game's map and work with it;
+- 'game_clock.h/c' - contains variables and functions to initiate game's clock and work with it;
+- 'game_script.h/c' - contains variables and functions for parsing game's script json files;
+- 'gameplay.h/c' - contains variables and functions to parse player's commands;
+- 'npc.h/c' - contains variables and functions to initiate game's NPCs and parse their dialogues from json files.
 
 ## Libraries
 
@@ -33,6 +33,48 @@ The code is split into multiple files:
 - Third-party: `cJSON` for JSON parsing
 
 ## Data types and data structures
+
+### config.h
+
+#### Constants
+
+- `#define MAXNAME 50` and `#define MAXLINE 100` are the maximum number of characters to be used in names and user input;
+
+#### Enums
+
+- `Game_State` enum is used to control the game flow. It has the folowing members:
+    - `STATE_MENU` - used to access game's menu;
+    - `STATE_SCRIPT` - used to access game's script;
+    - `STATE_PLAYING` - used for user input (gaming);
+    - `STATE_QUIT` - quits the game;
+
+- `Menu_Command_Type` - enum is used to control the game's menu. It has the folowing members:
+    - `MENU_UNKNOWN` - used when the command is unidentified;
+    - `MENU_START` - used to start the game;
+    - `MENU_LOAD` - used to load the game;
+    - `MENU_QUIT` - quits the menu;
+
+- `Script_Command_Type` enum is used to control script reading. It has the folowing members:
+    - `SCRIPT_UNKNOWN` - 
+    - `SCRPIT_LOAD` - used to load the script;
+    - `SCRIPT_PAUSE` - stops reading and waits for user input;
+    - `SCRIPT_END` - marks the end of the script and stops reading;
+    
+- `Game_Command_Type` enum is used to parse and identify user input. It has the folowing members:
+    - `GAME_UKNNOWN` - used when the command is unidentified;
+    - `GAME_GO` - used to move the player;
+    - `GAME_LOOK` - 
+    - `GAME_WHERE` - 
+    - `GAME_MAP_LOKAL` -
+    - `GAME_MAP_GLOBAL` - 
+    - `GAME_MEUN` - shows menu;
+
+- `Item_Type` 
+
+### input_utils.h
+
+
+
 
 ## Workflow
 
