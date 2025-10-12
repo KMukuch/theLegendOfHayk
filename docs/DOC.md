@@ -89,13 +89,15 @@ The code is split into multiple files:
 
 #### Structs
 
-`srtuct Location
+```
+struct Location
 {
     char location_name[MAXNAME];
     bool start_flag;
     struct Location_Connection *connection_array;
     int connection_array_size; 
-}``
+};
+```
 
 
 
