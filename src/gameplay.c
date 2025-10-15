@@ -63,10 +63,10 @@ void parse_and_execute_command(const char *command, struct Player *player, const
         for(int i = 0; i < game_maps->map_array_size; i++)
         {
             printf("%s\n", game_maps->map_array[i].map_name);
-            // for(int j = 0; j < game_maps->map_array[i].location_array_size; j++)
-            // {
-            //     printf("%s\n", game_maps->map_array[i].location_array[j].location_name);
-            // }
+            for(int j = 0; j < game_maps->map_array[i].map_connection_array_size; j++)
+            {
+                printf("->%s\n", game_maps->map_array[i].map_connection_array[j].map->map_name);
+            }
         }
     } else if(command_type == GAME_WHERE)
     {

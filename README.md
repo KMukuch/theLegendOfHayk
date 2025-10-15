@@ -51,259 +51,54 @@ The game is designed to give a time experience of the real world. With each play
 
 ### Regional Map
 
-- Assiria
-    - Babylon (City)
-    - Nippur (City)
-
 - Babylon
-    - Assiria
-    - Van
 
-- Nippur
-    - Assiria
-    - Babylon
+- 
 
-- Van
-    - Babylon (City)
-    - Ararat
-    - Tushpa (City)
+### Local Maps
 
-- Ararat
-    - Van
-    - Sevan
-
-- Sevan
-    - Ararat
-    - Caucasus
-
-- Caucasus
-    - Sevan
-    - Mtskheta (City)
-
-### World Map
-
-- Babylon
-    - Nippur
-    - Van
-
-- Nippur
-    - Tushpa
-    - Babylon
-
-- Tushpa (Lake Van)
-    - Nippur
-    - Mount Ararat
-
-- Mount Ararat
-    - Sevan
-
-- Sevan
-    - Mtskheta
-
-- Mtskheta
-    - Sevan
-
-### Babylon
-
-- City Gate (South)
-    - Main Road
-
-- Main Road
-    - City Gate (South)
-    - Marketplace
-    - Palace District
-    - Temple of Marduk
-
-- Marketplace
-    - Main Road
-    - Residential Quarter
-
-- Residential Quarter
-    - Marketplace
-    - Inner Gardens
-
-- Inner Gardens
-    - Residential Quarter
-    - Palace District
-
-- Palace District
-    - Main Road
-    - Inner Gardens
-    - Ziggurat
-
-- Temple of Marduk
-    - Main Road
-    - Ziggurat
-
-- Ziggurat (Etemenanki)
-    - Palace District
-    - Temple of Marduk
-
-### Nippur
-
-- City Gate (North)
-    - Main Street
-
-- Main Street
-    - City Gate (North)
-    - Temple of Enlil
-    - Marketplace
-    - Residential Quarter
-
-- Temple of Enlil
-    - Main Street
-    - Ziggurat
-
-- Marketplace
-    - Main Street
-    - Residential Quarter
-
-- Residential Quarter
-    - Marketplace
-    - Inner Gardens
-
-- Inner Gardens
-    - Residential Quarter
-    - Temple of Enlil
-
-- Ziggurat
-    - Temple of Enlil
-
-### Tushpa
-
-- City Gate (Main Entrance)
-    - Main Street
-
-- Main Street
-    - City Gate (Main Entrance)
-    - Marketplace
-    - Royal Fortress
-    - Temple of Haldi
-
-- Marketplace
-    - Main Street
-    - Residential Quarter
-
-- Residential Quarter
-    - Marketplace
-    - Inner Gardens (optional)
-
-- Inner Gardens
-    - Residential Quarter
-    - Royal Fortress
-
-- Royal Fortress
-    - Main Street
-    - Inner Gardens
-    - Watchtower
-
-- Temple of Haldi
-    - Main Street
-    - Watchtower
-
-- Watchtower
-    - Royal Fortress
-    - Temple of Haldi
-    
-### Mtskheta
-
-- City Gate (East)
-    - Main Street
-
-- Main Street
-    - City Gate (East)
-    - Royal Citadel
-    - Temple District
-    - Market Square
-
-- Royal Citadel
-    - Main Street
-
-- Temple District
-    - Main Street
-    - Market Square
-
-- Market Square
-    - Main Street
-    - Temple District
-    
-### Village Map
-
-- [Village Name]
-    - Main Street
-    - Marketplace
-    - Residential Quarter
-    - Watchtower
-    - Outpost Gate
-
-- Main Street
-    - Marketplace
-    - Residential Quarter
-
-- Marketplace
-    - Main Street
-    - Residential Quarter
-    - Watchtower
-
-- Residential Quarter
-    - Main Street
-    - Marketplace
-    - Outpost Gate
-
-- Watchtower
-    - Marketplace
-    - Outpost Gate
-
-- Outpost Gate
-    - Residential Quarter
-    - Watchtower
+#### Village
 
 ## Gameplay
 
 ### Movement & Exploration
 
 - `go [node]` — go to the next node
-- `look` — Describe the current location
-- `where` — Show your current location
-- `map` — (Optional) Show map coordinates or info
+- `look` — describe the current location
+- `where` — show your current location
+- `map global` — show global map
+- `map local` — show local map
+- `rest` — restore health
 
 ### Interaction
 
-- `inspect [object/npc/place]` — Examine details  
-- `talk [npc]` — Start dialogue
-- `take [item]` — Pick up an item
-- `drop [item]` — Leave an item
-- `use [item]` — Use an item
-- `open [door/chest]` — Open a container or path
-- `close [door/chest]` — Close a container or path
+- `inspect [object/npc/place]` — examine details  
+- `talk [npc]` — start dialogue
+- `take [item]` — pick up an item
+- `drop [item]` — leave an item
+- `use [item]` — use an item
 
-### Combat & Survival
+### Combat
 
-- `attack [enemy]` — Engage in combat
-- `block` — Defend against attacks
-- `dodge` — Evade an attack
-- `flee` — Attempt to run away
-- `equip [item]` — Equip a weapon or armor
-- `unequip [item]` — Unequip a weapon or armor
+- `attack [enemy]` — engage in combat
+- `block` — defend against attacks
+- `equip [item]` — equip a weapon or armor
+- `unequip [item]` — unequip a weapon or armor
 
 ### Inventory & Status
 
-- `inventory (inv)` — List items carried
-- `stats` — Show health, energy, and other stats
-- `quests` — Show active or completed quests
-- `skills` — Show learned abilities
+- `inventory` — list items carried
+- `stats` — show health, energy, and other stats
+- `quests` — show active or completed quests
+- `skills` — show learned abilities
 
-### Roleplay & Story
+### Help
 
-- `say [message]` — Speak to nearby NPCs
-- `rest / camp` — Restore energy or health
-
-### Meta / Utility
-
-- `help` — List available commands  
-- `save` — Save game progress  
-- `load` — Load game progress  
-- `quit` — Exit the game
+- `help` — list available commands  
+- `save` — save game progress  
+- `load` — load game progress
+- `menu` - enter the menu
+- `quit` — exit the game
 
 ## Contributing
 

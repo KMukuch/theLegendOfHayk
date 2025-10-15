@@ -16,25 +16,41 @@ struct Location create_location(const char  *location_name)
     strcpy(location.location_name, location_name);
     location.start_flag = false;
     location.connection_array = NULL;
-    location.connection_array_size = 0;
+    location.location_connection_array_size = 0;
 
     return location;
 }
 
-struct Location_Connection create_connection(const struct Location *location, int distance)
+struct Location_Connection create_location_connection(const struct Location *location, int distance)
 {
     struct Location_Connection connection;
 
-    connection.location_array = location;
+    connection.location = location;
     connection.connection_distance = distance;
 
     return connection;
 }
 
-void set_connection(struct Location *location, struct Location_Connection *location_connection, int size)
+struct Map_Connection create_map_connection(const struct Map *map, int distance)
+{
+    struct Map_Connection connection;
+
+    connection.map = map;
+    connection.connection_distance = distance;
+
+    return connection;
+}
+
+void set_location_connection(struct Location *location, struct Location_Connection *location_connection, int size)
 {
     location->connection_array = location_connection;
-    location->connection_array_size = size;
+    location->location_connection_array_size = size;
+}
+
+void set_map_connection(struct Map *map, struct Map_Connection *map_connection, int size)
+{
+    map->map_connection_array = map_connection;
+    map->map_connection_array_size = size;
 }
 
 struct Map create_map(const char  *map_name, const char *map_ref)
@@ -124,13 +140,53 @@ struct Location* create_location_array(cJSON *json_file)
     return location_array;
 }
 
-void set_connection_array(cJSON *json_file, int connection_array_size, struct Location *location_array)
+void set_map_connection_array(cJSON *json_file, int map_array_size, struct Map *map_array)
 {
-    for (int i = 0; i < connection_array_size; i++)
+    for(int i = 0; i < map_array_size; i++)
+    {
+        int connection_size;
+        struct Map_Connection *connection;
+        
+        cJSON *json_item = cJSON_GetArrayItem(json_file, i);
+        cJSON *json_connection = cJSON_GetObjectItemCaseSensitive(json_item, "connection");
+
+        connection_size = cJSON_GetArraySize(json_connection);
+        if (connection_size > 0)
+        {
+            connection = malloc(connection_size * sizeof(struct Map_Connection));
+            if (!connection)
+            {
+                fprintf(stderr, "Memory allocation failed\n");
+                
+                return;
+            }
+            
+            for (int j = 0; j < connection_size; j++)
+            {
+                cJSON *json_connection_item = cJSON_GetArrayItem(json_connection, j);
+                cJSON *json_node = cJSON_GetObjectItemCaseSensitive(json_connection_item, "node");
+                cJSON *json_distance = cJSON_GetObjectItemCaseSensitive(json_connection_item, "distance");
+                
+                struct Map *target = find_game_map_by_name(json_node->valuestring, map_array, map_array_size);
+                
+                if (target && cJSON_IsNumber(json_distance))
+                {
+                    connection[j] = create_map_connection(target, json_distance->valueint);
+                }
+            }
+
+            set_map_connection(&map_array[i], connection, connection_size);
+        }
+    }
+}
+
+void set_location_connection_array(cJSON *json_file, int location_array_size, struct Location *location_array)
+{
+    for(int i = 0; i < location_array_size; i++)
     {
         int connection_size;
         struct Location_Connection *connection;
-
+        
         cJSON *json_item = cJSON_GetArrayItem(json_file, i);
         cJSON *json_connection = cJSON_GetObjectItemCaseSensitive(json_item, "connection");
 
@@ -151,15 +207,15 @@ void set_connection_array(cJSON *json_file, int connection_array_size, struct Lo
                 cJSON *json_node = cJSON_GetObjectItemCaseSensitive(json_connection_item, "node");
                 cJSON *json_distance = cJSON_GetObjectItemCaseSensitive(json_connection_item, "distance");
                 
-                struct Location *target = find_game_location_by_name(json_node->valuestring, location_array, connection_array_size);
+                struct Location *target = find_game_location_by_name(json_node->valuestring, location_array, location_array_size);
                 
                 if (target && cJSON_IsNumber(json_distance)) 
                 {
-                    connection[j] = create_connection(target, json_distance->valueint);
+                    connection[j] = create_location_connection(target, json_distance->valueint);
                 }
             }
 
-            set_connection(&location_array[i], connection, connection_size);
+            set_location_connection(&location_array[i], connection, connection_size);
         }
     }
 }
@@ -174,14 +230,14 @@ struct Maps init_game_map()
     game_maps.map_array_size = cJSON_GetArraySize(json_file);
     game_map = create_game_map(json_file);
     for(int i = 0; i < game_maps.map_array_size; i++)
-    {
+    {   
         char map_ref_path[MAXLINE];
         snprintf(map_ref_path, sizeof(map_ref_path), "../data/%s", game_map[i].map_ref);
 
         cJSON *json_map_ref_file = load_json_file(map_ref_path);
         int location_array_size = cJSON_GetArraySize(json_map_ref_file);
         struct Location *location_array = create_location_array(json_map_ref_file);
-        set_connection_array(json_map_ref_file, location_array_size, location_array);  
+        set_location_connection_array(json_map_ref_file, location_array_size, location_array);  
         
         game_map[i].location_array = location_array;
         game_map[i].location_array_size = location_array_size;
@@ -190,9 +246,27 @@ struct Maps init_game_map()
     }
     
     game_maps.map_array = game_map;
+    set_map_connection_array(json_file, game_maps.map_array_size, game_maps.map_array);
     cJSON_Delete(json_file);
 
     return game_maps;
+}
+
+struct Map* find_game_map_by_name(const char map_name[MAXNAME], struct Map *map_array, int map_array_size)
+{
+    bool map_flag = false;
+
+    for(int i = 0; i < map_array_size; i++)
+    {
+        if(strcmp(map_name, map_array[i].map_name) == 0 && !map_flag)
+        {
+            map_flag = true;
+
+            return &map_array[i];
+        }
+    }
+
+    return NULL;
 }
 
 struct Location* find_game_location_by_name(const char location_name[MAXNAME], struct Location *location_array, int location_array_size)
@@ -236,9 +310,11 @@ void free_game_map(struct Maps *maps)
     if (!maps || !maps->map_array)
         return;
 
-    for (int i = 0; i < maps->map_array_size; i++) {
+    for (int i = 0; i < maps->map_array_size; i++)
+    {
         struct Map *map = &maps->map_array[i];
-        for (int j = 0; j < map->location_array_size; j++) {
+        for (int j = 0; j < map->location_array_size; j++)
+        {
             free(map->location_array[j].connection_array);
         }
         free(map->location_array);
