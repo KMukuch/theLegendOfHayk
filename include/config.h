@@ -10,28 +10,32 @@ typedef enum
     NIGHT
 } Day_Cycle_Type;
 
-typedef enum {
+typedef enum 
+{
     STATE_MENU,
     STATE_SCRIPT,
     STATE_PLAYING,
     STATE_QUIT
 } Game_State;
 
-typedef enum {
+typedef enum 
+{
     MENU_UNKNOWN,
     MENU_START,
     MENU_LOAD,
     MENU_QUIT
 } Menu_Command_Type;
 
-typedef enum {
+typedef enum 
+{
     SCRIPT_UNKNOWN,
     SCRIPT_LOAD,
     SCRIPT_PAUSE,
     SCRIPT_END
 } Script_Command_Type;
 
-typedef enum {
+typedef enum 
+{
     GAME_UNKNOWN,
     GAME_GO,
     GAME_LOOK,
@@ -41,18 +45,27 @@ typedef enum {
     GAME_MENU
 } Game_Command_Type;
 
-typedef enum {
+typedef enum 
+{
     ITEM_UNKNOWN,
     ITEM_RANGE,
     ITEM_MELEE,
     ITEM_ARMOR
 } Item_Type;
 
-typedef enum {
+typedef enum 
+{
     ITEM_BONUS_UNKNOWN,
     ITEM_BONUS_DAMAGE,
     ITEM_BONUS_ARMOR,
     ITEM_BONUS_HEALTH
 } Item_Bonus_Type;
+
+typedef enum
+{
+    GAME_QUEST_UNKNOWN,
+    GAME_QUEST_MAIN,
+    GAME_QUEST_SIDE
+} Game_Quest_Type;
 
 #endif

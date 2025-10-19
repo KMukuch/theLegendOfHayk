@@ -53,8 +53,6 @@ The game is designed to give a time experience of the real world. With each play
 
 - Babylon
 
-- 
-
 ### Local Maps
 
 #### Village

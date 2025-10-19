@@ -167,7 +167,7 @@ void set_map_connection_array(cJSON *json_file, int map_array_size, struct Map *
                 cJSON *json_node = cJSON_GetObjectItemCaseSensitive(json_connection_item, "node");
                 cJSON *json_distance = cJSON_GetObjectItemCaseSensitive(json_connection_item, "distance");
                 
-                struct Map *target = find_game_map_by_name(json_node->valuestring, map_array, map_array_size);
+                struct Map *target = find_map_by_name(json_node->valuestring, map_array, map_array_size);
                 
                 if (target && cJSON_IsNumber(json_distance))
                 {
@@ -207,7 +207,7 @@ void set_location_connection_array(cJSON *json_file, int location_array_size, st
                 cJSON *json_node = cJSON_GetObjectItemCaseSensitive(json_connection_item, "node");
                 cJSON *json_distance = cJSON_GetObjectItemCaseSensitive(json_connection_item, "distance");
                 
-                struct Location *target = find_game_location_by_name(json_node->valuestring, location_array, location_array_size);
+                struct Location *target = find_location_by_name(json_node->valuestring, location_array, location_array_size);
                 
                 if (target && cJSON_IsNumber(json_distance)) 
                 {
@@ -252,7 +252,7 @@ struct Maps init_game_map()
     return game_maps;
 }
 
-struct Map* find_game_map_by_name(const char map_name[MAXNAME], struct Map *map_array, int map_array_size)
+struct Map* find_map_by_name(const char map_name[MAXNAME], struct Map *map_array, int map_array_size)
 {
     bool map_flag = false;
 
@@ -269,7 +269,7 @@ struct Map* find_game_map_by_name(const char map_name[MAXNAME], struct Map *map_
     return NULL;
 }
 
-struct Location* find_game_location_by_name(const char location_name[MAXNAME], struct Location *location_array, int location_array_size)
+struct Location* find_location_by_name(const char location_name[MAXNAME], struct Location *location_array, int location_array_size)
 {
     bool location_flag = false;
 
@@ -286,7 +286,7 @@ struct Location* find_game_location_by_name(const char location_name[MAXNAME], s
     return NULL;
 }
 
-const struct Location* find_location_in_maps_by_name(const char location_name[MAXNAME], const struct Maps *maps)
+struct Location* find_location_in_maps_by_name(const char location_name[MAXNAME], const struct Maps *maps)
 {
     bool location_flag = false;
 

@@ -8,6 +8,7 @@
 #include "unit_utils.h"
 #include "game_clock.h"
 #include "gameplay.h"
+#include "game_npc.h"
 
 struct Player create_player()
 {
@@ -54,7 +55,7 @@ Game_Command_Type identify_game_command(const char *command)
     return GAME_UNKNOWN;
 }
 
-void parse_and_execute_command(const char *command, struct Player *player, const struct Maps *game_maps)
+void parse_and_execute_command(const char *command, struct Player *player, const struct Maps *game_maps, const struct NPCs *game_npcs)
 {
     Game_Command_Type command_type = identify_game_command(command);
     player->game_command_type = command_type;
@@ -71,5 +72,19 @@ void parse_and_execute_command(const char *command, struct Player *player, const
     } else if(command_type == GAME_WHERE)
     {
         printf("Your current location: %s, %s", player->player_location.map->map_name, player->player_location.location->location_name);
+    } else if(command_type == GAME_LOOK)
+    {
+        for(int i = 0; i < game_npcs->npc_array_size; i++)
+        {
+            if(player->player_location.map == game_npcs->npc_array[i].npc_location.map)
+            {
+                printf("You see %s.", game_npcs->npc_array[i].npc_name);
+            }
+        }
     }
+}
+
+void handle_go_command(const char *command, struct Player *player, const struct Maps *game_maps, const struct NPCs *game_npcs)
+{
+    
 }

@@ -15,53 +15,32 @@ struct NPC create_npc(const char *npc_name)
     struct NPC npc;
 
     strcpy(npc.npc_name, npc_name);
-    npc.current_location = NULL;
     npc.flag = false;
     npc.dialogue_id = 0;
 
     return npc;
 }
 
-void set_npc_location_by_name(cJSON *json_item, struct NPC *npc, const struct Location *game_map, int game_map_size)
+struct NPCs create_npcs()
 {
-    bool location_flag = false;
+    struct NPCs npcs;
 
-    char location_name[MAXNAME];
+    npcs.npc_array = NULL;
+    npcs.npc_array_size = 0;
 
-    cJSON *json_location_name = cJSON_GetObjectItemCaseSensitive(json_item, "location");
-    if(cJSON_IsString(json_location_name) && json_location_name->valuestring != NULL)
-    {
-        strcpy(location_name, json_location_name->valuestring);
-    }
-
-    for(int i = 0; i < game_map_size; i++)
-    {
-        if(strcmp(location_name, game_map[i].location_name) == 0 && !location_flag)
-        {
-            location_flag = true;
-            npc->current_location = &game_map[i];
-        }
-    }
+    return npcs;
 }
 
-int get_game_npc_size()
-{
-    int game_npc_size = 0;
-    
-    cJSON *json_file = load_json_file(FILENAME);
-    game_npc_size = cJSON_GetArraySize(json_file);
-
-    return game_npc_size;
-}
-
-struct NPC* init_game_npc(const struct Maps *game_maps)
+struct NPCs init_game_npcs(const struct Maps *game_maps)
 {
     int i, game_npc_size;
+    struct NPCs game_npcs;
     struct NPC *game_npc;
     
     cJSON *json_file = load_json_file(FILENAME);
     cJSON *json_item = NULL;
 
+    game_npcs = create_npcs();
     game_npc_size = cJSON_GetArraySize(json_file);
     game_npc = malloc(game_npc_size * sizeof(struct NPC));
     i = 0;
@@ -72,22 +51,34 @@ struct NPC* init_game_npc(const struct Maps *game_maps)
         {
             game_npc[i] = create_npc(json_name->valuestring);
 
-            cJSON *json_location_name = cJSON_GetObjectItemCaseSensitive(json_item, "location");
-            if(cJSON_IsString(json_location_name) && json_location_name->valuestring != NULL)
+            cJSON *json_npc_location = cJSON_GetObjectItemCaseSensitive(json_item, "npc_location");
+            cJSON *json_map = cJSON_GetObjectItemCaseSensitive(json_npc_location, "map");
+            cJSON *json_location = cJSON_GetObjectItemCaseSensitive(json_npc_location, "location");
+            if(cJSON_IsString(json_map) && json_map->valuestring != NULL)
             {
-                game_npc[i].current_location = find_location_in_maps_by_name(json_location_name->valuestring, game_maps);
+                game_npc[i].npc_location.map = find_map_by_name(json_map->valuestring, game_maps->map_array, game_maps->map_array_size);
+            }
+            if(cJSON_IsString(json_location) && json_location->valuestring != NULL)
+            {
+                game_npc[i].npc_location.location = find_location_in_maps_by_name(json_location->valuestring, game_maps);
             }
         }
         i++;
     }
+
+    game_npcs.npc_array = game_npc;
+    game_npcs.npc_array_size = game_npc_size;
+
     cJSON_Delete(json_file);
 
-    return game_npc;
+    return game_npcs;
 }
 
-void free_game_npc(struct NPC *game_npc)
+void free_game_npcs(struct NPCs *npcs)
 {
-    free(game_npc);
+    free(npcs->npc_array);
+    npcs->npc_array = NULL;
+    npcs->npc_array_size = 0;
 }
 
 char* json_get_dialogue(char *npc_name, const int id)

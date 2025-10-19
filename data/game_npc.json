@@ -2,7 +2,10 @@
     {
         "name": "Vazgen",
         "id": 0,
-        "location": "Ararat Valley Village",
+        "npc_location": {
+            "map": "Ararat Valley Village",
+            "location": "Shrine"
+        },
         "dialogue": [
             {
                 "id": 0,
@@ -24,28 +27,31 @@
     {
         "name": "The old man (Arsen)",
         "id": 1,
-        "location": "Ararat Valley Village",
+        "npc_location": {
+            "map": "Ararat Valley Village",
+            "location": "Shrine"
+        },
         "dialogue": [
-                    {
-                        "id": 0,
-                        "content": "Ah… you came. The winds told me you would set out soon.",
-                        "answer": "Yes, I’m leaving the village. You asked to see me?"
-                    },
-                    {
-                        "id": 1,
-                        "content": "Indeed. The road beyond Ararat is not kind. You’ll need more than courage to walk it.",
-                        "answer": "I’ve faced danger before. What are you trying to say?"
-                    },
-                    {
-                        "id": 2,
-                        "content": "Take this sword. It was forged in the fires beneath the mountain, before my time. It will not fail you if your heart stays true.",
-                        "answer": "I… I don’t know what to say. Thank you, Arsen."
-                    },
-                    {
-                        "id": 3,
-                        "content": "Do not thank me. Thank the mountain that still watches over us. Now go.",
-                        "answer": "I’ll remember your words."
-                    }
-                ]
+            {
+                "id": 0,
+                "content": "Ah… you came. The winds told me you would set out soon.",
+                "answer": "Yes, I’m leaving the village. You asked to see me?"
+            },
+            {
+                "id": 1,
+                "content": "Indeed. The road beyond Ararat is not kind. You’ll need more than courage to walk it.",
+                "answer": "I’ve faced danger before. What are you trying to say?"
+            },
+            {
+                "id": 2,
+                "content": "Take this sword. It was forged in the fires beneath the mountain, before my time. It will not fail you if your heart stays true.",
+                "answer": "I… I don’t know what to say. Thank you, Arsen."
+            },
+            {
+                "id": 3,
+                "content": "Do not thank me. Thank the mountain that still watches over us. Now go.",
+                "answer": "I’ll remember your words."
+            }
+        ]
     }
 ]

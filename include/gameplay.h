@@ -5,6 +5,7 @@
 #include "config.h"
 #include "unit_utils.h"
 #include "game_map.h"
+#include "game_npc.h"
 
 #define MAXHEALTH 100
 #define MINDAMAGE 5
@@ -35,11 +36,12 @@ struct Player
 };
 
 struct Player create_player();
-Game_Command_Type identify_game_command(const char *command);
 void set_player_start_location(struct Player *player, const struct Maps *game_maps);
+
 Game_Command_Type identify_game_command(const char *command);
-void parse_and_execute_command(const char *command, struct Player *player, const struct Maps *game_maps);
-// void move_player(struct Player *player);
+void parse_and_execute_command(const char *command, struct Player *player, const struct Maps *game_maps, const struct NPCs *game_npcs);
+
+void handle_go_command(const char *command, struct Player *player, const struct Maps *game_maps, const struct NPCs *game_npcs);
 // void inspect_object();
 // void attack_enemy();
 // void show_status();

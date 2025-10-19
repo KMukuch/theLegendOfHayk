@@ -1,14 +1,14 @@
 [
     {
         "node": "Gate",
-        "connections": [
+        "connection": [
             { "node": "Main square", "distance": 1 },
             { "node": "Exit", "distance": 1 }
         ]
     },
     {
         "node": "Main square",
-        "connections": [
+        "connection": [
             { "node": "Gate", "distance": 1 },
             { "node": "Pottery", "distance": 1 },
             { "node": "Local market", "distance": 1 },
@@ -17,7 +17,7 @@
     },
     {
         "node": "Pottery",
-        "connections": [
+        "connection": [
             { "node": "Main square", "distance": 1 },
             { "node": "Local market", "distance": 1 },
             { "node": "Shrine", "distance": 1 }
@@ -25,7 +25,7 @@
     },
     {
         "node": "Local market",
-        "connections": [
+        "connection": [
             { "node": "Main square", "distance": 1 },
             { "node": "Pottery", "distance": 1 },
             { "node": "Shrine", "distance": 1 }
@@ -34,7 +34,7 @@
     {
         "node": "Shrine",
         "start": true,
-        "connections": [
+        "connection": [
             { "node": "Main square", "distance": 1 },
             { "node": "Pottery", "distance": 1 },
             { "node": "Local market", "distance": 1 },
@@ -49,7 +49,7 @@
     },
     {
         "node": "Forest path",
-        "connections": [
+        "connection": [
             { "node": "Shrine", "distance": 2 },
             { "node": "Exit", "distance": 3 }
         ],

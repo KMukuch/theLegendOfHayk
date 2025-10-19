@@ -58,9 +58,9 @@ void set_map_connection_array(cJSON *json_file, int map_array_size, struct Map *
 void set_location_connection_array(cJSON *json_file, int location_array_size, struct Location *location_array);
 struct Maps init_game_map();
 
-struct Map* find_game_map_by_name(const char map_name[MAXNAME], struct Map *map_array, int map_array_size);
-struct Location* find_game_location_by_name(const char location_name[MAXNAME], struct Location *location_array, int location_array_size);
-const struct Location* find_location_in_maps_by_name(const char location_name[MAXNAME], const struct Maps *maps);
+struct Map* find_map_by_name(const char map_name[MAXNAME], struct Map *map_array, int map_array_size);
+struct Location* find_location_by_name(const char location_name[MAXNAME], struct Location *location_array, int location_array_size);
+struct Location* find_location_in_maps_by_name(const char location_name[MAXNAME], const struct Maps *maps);
 
 void free_game_map(struct Maps *maps);
 

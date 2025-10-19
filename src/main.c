@@ -17,7 +17,7 @@ int main()
 
     struct Game_Clock game_clock = init_game_clock();
     struct Maps game_maps = init_game_map();
-    struct NPC *game_npc = init_game_npc(&game_maps);
+    struct NPCs game_npcs = init_game_npcs(&game_maps);
     struct Player player = create_player();
     struct Game_Script_Manager game_script_manager = create_game_script_manager();
 
@@ -68,7 +68,7 @@ int main()
             printf("> ");
             if (fgets(buffer, MAXLINE, stdin))
             {
-                parse_and_execute_command(buffer, &player, &game_maps);
+                parse_and_execute_command(buffer, &player, &game_maps, &game_npcs);
 
                 if (player.game_command_type == GAME_MENU)
                 {
@@ -86,7 +86,7 @@ int main()
         }
     }
 
-    free_game_npc(game_npc);
+    free_game_npcs(&game_npcs);
     free_game_map(&game_maps);
 
     return 0;

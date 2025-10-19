@@ -12,6 +12,11 @@
             "id": 1,
             "content": "You are in a village near mount Ararat. The tales about the giant who rose against the tyrant have reached you. It's your choice to join and help him in his conquest.",
             "pause": true
+        },
+        {
+            "id": 2,
+            "content": "You've reached Haykashen and found Hayk: a giant broad-shouldered man with thick curly hairs, bright eyes and huge arms.",
+            "pause": true
         }
     ]
 }
