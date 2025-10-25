@@ -79,7 +79,19 @@ The code is split into multiple files:
     - `ITEM_BONUS_UNKNOWN` - 
     - `ITEM_BONUS_DAMAGE` - item increases atack damage;
     - `ITEM_ARMOR` - item increases armor;
-    - `ITEM_HEALTH` - item increases health; 
+    - `ITEM_HEALTH` - item increases health;
+
+- `Game_Quest_Type` enum is used to identify the quest type. It has the folowing members:
+    - `GAME_QUEST_UNKNOWN` - 
+    - `GAME_QUEST_MAIN` - main story quests;
+    - `GAME_QUEST_SIDE` - side quests;
+    
+- `Objective_Type` enum is used to identify the objective type. It has the folowing members:
+    - `OBJECTIVE_UNKNOWN` - 
+    - `OBJECTIVE_LOCATION` - in order to complete the objective the player has to go to a certain location;
+    - `OBJECTIVE_NPC` - in order to complete the objective the player has to interact with an npc;
+    - `OBJECTIVE_ITEM` - in order to complete the objective the player has to interact with a certain item;
+    - `OBJECTIVE_ENEMY` - in order to complete the objective the player has to defeat an enemy;
 
 ### input_utils.h
 
@@ -90,17 +102,24 @@ The code is split into multiple files:
 #### Structs
 
 ```
-struct Location
+struct Maps
 {
-    char location_name[MAXNAME];
-    bool start_flag;
-    struct Location_Connection *connection_array;
-    int connection_array_size; 
+    struct Map *map_array;
+    int map_array_size;
 };
 ```
 
+### game_quest.h
 
+#### Structs
 
+```
+struct Game_Quest_Manager
+{
+    struct Game_Quest *game_quest_array;
+    int game_quest_array_size;
+};
+```
 
 ## Workflow
 

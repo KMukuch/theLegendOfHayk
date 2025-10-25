@@ -6,8 +6,9 @@
 #include "game_map.h"
 #include "game_clock.h"
 #include "game_script.h"
-#include "gameplay.h"
 #include "game_npc.h"
+#include "game_quest.h"
+#include "gameplay.h"
 
 int main()
 {
@@ -20,6 +21,7 @@ int main()
     struct NPCs game_npcs = init_game_npcs(&game_maps);
     struct Player player = create_player();
     struct Game_Script_Manager game_script_manager = create_game_script_manager();
+    struct Game_Quest_Manager game_quest_manager = create_game_quest_manager();
 
     printf("%s\n", load_game_title());
     getchar();

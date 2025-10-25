@@ -3,6 +3,7 @@
 
 #define MAXNAME 50
 #define MAXLINE 100
+#define MAXDESCRIPTION 500
 
 typedef enum
 {
@@ -67,5 +68,14 @@ typedef enum
     GAME_QUEST_MAIN,
     GAME_QUEST_SIDE
 } Game_Quest_Type;
+
+typedef enum
+{
+    OBJECTIVE_UNKNOWN,
+    OBJECTIVE_LOCATION,
+    OBJECTIVE_NPC,
+    OBJECTIVE_ITEM,
+    OBJECTIVE_ENEMY
+} Objective_Type;
 
 #endif

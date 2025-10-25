@@ -11,6 +11,10 @@
         {
             "id": 1,
             "content": "You are in a village near mount Ararat. The tales about the giant who rose against the tyrant have reached you. It's your choice to join and help him in his conquest.",
+            "quest_ref": {
+                    "quest_id": 0,
+                    "objective_id": 0
+                },
             "pause": true
         },
         {

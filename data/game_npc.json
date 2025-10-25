@@ -15,7 +15,11 @@
             {
                 "id": 1,
                 "content": "So you are leaving us? The old man wanted to see you. He has something you definitely need.",
-                "answer": ""
+                "answer": "",
+                "quest_ref": {
+                    "quest_id": 0,
+                    "objective_id": 1
+                }
             },
             {
                 "id": 2,
@@ -25,7 +29,7 @@
         ]
     },
     {
-        "name": "The old man (Arsen)",
+        "name": "The old man Arsen",
         "id": 1,
         "npc_location": {
             "map": "Ararat Valley Village",

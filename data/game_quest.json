@@ -1,14 +1,23 @@
 [
     {
         "name": "Meet Hayk",
-        "id": "0",
+        "id": 0,
         "description": "Find and speak with Hayk.",
         "objective": [
             {
                 "name": "Talk to Vazgen.",
                 "id": 0,
                 "description": "Go to the Shrine in Ararat Valley Village and find Vazgen.",
-                "obj_location": {
+                "objective_location": {
+                    "map": "Ararat Valley Village",
+                    "location": "Shrine"
+                }
+            },
+            {
+                "name": "Talk to the old man Arsen.",
+                "id": 1,
+                "description": "Find the old man Arsen and talk to him. He is waiting at the village gates.",
+                "objective_location": {
                     "map": "Ararat Valley Village",
                     "location": "Shrine"
                 }

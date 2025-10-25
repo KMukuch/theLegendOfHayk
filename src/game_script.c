@@ -6,6 +6,7 @@
 #include "config.h"
 #include "json_utils.h"
 #include "game_script.h"
+#include "game_quest.h"
 
 #define FILENAME "../data/game_script.json"
 
@@ -27,20 +28,24 @@ void advance_game_script(struct Game_Script_Manager *game_script_manager)
     }
 }
 
-void run_game_script_manager(struct Game_Script_Manager *game_script_manager)
+void run_game_script_manager(struct Game_Script_Manager *game_script_manager, struct Game_Quest_Manager *game_quest_manager)
 {
     if (game_script_manager->script_command_type == SCRIPT_LOAD)
     {
         bool pause_flag;
-        char *script_content = load_game_script(game_script_manager->current_script_id, &pause_flag);
+        cJSON game_quest_ref = NULL;
+        char *script_content = load_game_script(game_script_manager->current_script_id, &pause_flag, &game_quest_ref);
 
         if(script_content != NULL)
         {
             printf("%s\n", script_content);
             getchar();
         }
-        
-        if (pause_flag)
+        if(game_quest_ref)
+        {
+            update_game_quest_manager(game_quest_manager);
+        }
+        if(pause_flag)
         {
             game_script_manager->script_command_type = SCRIPT_PAUSE;
         } else
@@ -88,7 +93,7 @@ char* load_game_title()
     return title;
 }
 
-char* load_game_script(const int id, bool *pause_flag)
+char* load_game_script(const int id, bool *pause_flag, cJSON *game_quest_ref)
 {
     bool script_flag = false;
 
@@ -107,6 +112,7 @@ char* load_game_script(const int id, bool *pause_flag)
             {
                 script_flag = true;
                 cJSON *json_script_item_content = cJSON_GetObjectItemCaseSensitive(json_script_item, "content");
+                cJSON *json_script_item_quest_ref = cJSON_GetObjectItemCaseSensitive(json_script_item, "quest_ref");
                 cJSON *json_script_pause = cJSON_GetObjectItemCaseSensitive(json_script_item, "pause");
                 if (cJSON_IsString(json_script_item_content) && json_script_item_content->valuestring != NULL)
                 {
@@ -119,6 +125,10 @@ char* load_game_script(const int id, bool *pause_flag)
                         return NULL;
                     }
                     strcpy(content, json_script_item_content->valuestring);
+                }
+                if(!json_script_item_quest_ref)
+                {
+                    game_quest_ref = json_script_item_quest_ref;
                 }
                 if (cJSON_IsBool(json_script_pause))
                 {

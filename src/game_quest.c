@@ -11,3 +11,174 @@
 
 #define FILENAME "../data/game_quest.json"
 
+struct Game_Quest_Manager create_game_quest_manager()
+{
+    struct Game_Quest_Manager game_quest_manager;
+
+    game_quest_manager.game_quest_array = NULL;
+    game_quest_manager.game_quest_array_size = 0;
+
+    return game_quest_manager;
+}
+
+struct Game_Quest create_game_quest()
+{
+    struct Game_Quest game_quest;
+
+    game_quest.game_quest_id = 0;
+    game_quest.complete_flag = false;
+    game_quest.game_quest_objective = NULL;
+    game_quest.objective_array_size = 0;
+
+    return game_quest;
+}
+
+struct Game_Quest_Objective create_game_quest_objective()
+{
+    struct Game_Quest_Objective game_quest_objective;
+
+    game_quest_objective.game_quest_objective_id = 0;
+    game_quest_objective.complete_flag = false;
+    game_quest_objective.objective_location = NULL;
+
+    return game_quest_objective;
+}
+
+struct Objective_Location create_objective_location()
+{
+    struct Objective_Location objective_location;
+
+    objective_location.map = NULL;
+    objective_location.location = NULL;
+
+    return objective_location;
+}
+
+void set_objective_location()
+{
+    
+}
+
+void set_quest_objective(cJSON *json_quest_objective, struct Game_Quest_Objective *game_quest_objective)
+{
+    cJSON *json_objective_name = cJSON_GetObjectItemCaseSensitive(json_quest_item, "name");
+    cJSON *json_objective_description = cJSON_GetObjectItemCaseSensitive(json_quest_item, "description");
+    cJSON *json_objective_id = cJSON_GetObjectItemCaseSensitive(json_quest_item, "id");
+    cJSON *json_objective_location = cJSON_GetObjectItemCaseSensitive(json_quest_item, "objective");
+
+    if(cJSON_IsString(json_objective_name) && json_objective_name->valuestring != NULL)
+    {
+        strcpy(game_quest_objective->objective_name, json_objective_name->valuestring);
+    }
+    if(cJSON_IsString(json_objective_description) && json_objective_description->valuestring != NULL)
+    {
+        strcpy(game_quest_objective->objective_description, json_objective_description->valuestring);
+    }
+    if(cJSON_IsNumber(json_objective_id) && json_objective_id->valueint != NULL)
+    {
+        game_quest_objective->game_quest_objective_id = json_objective_id->valueint;
+    }
+    if(json_objective_location)
+    {
+        set_objective_location();
+    }
+}
+
+void set_objective_array(cJSON *json_quest_objective, struct Game_Quest_Objective *objective_array, int objective_array_size)
+{
+    for (int i = 0; i < objective_array_size; i++)
+    {
+        objective_array[i] = create_game_quest_objective();
+
+        cJSON *json_objective_item = cJSON_GetArrayItem(json_file, i);
+        set_quest_objective(json_objective_item, &objective_array[i]);
+    }
+}
+
+void set_game_quest(cJSON *json_quest_item, struct Game_Quest *game_quest)
+{
+    int objective_array_size = 0;
+
+    struct Game_Quest_Objective *objective_array;
+
+    cJSON *json_quest_name = cJSON_GetObjectItemCaseSensitive(json_quest_item, "name");
+    cJSON *json_quest_description = cJSON_GetObjectItemCaseSensitive(json_quest_item, "description");
+    cJSON *json_quest_id = cJSON_GetObjectItemCaseSensitive(json_quest_item, "id");
+    cJSON *json_quest_objective = cJSON_GetObjectItemCaseSensitive(json_quest_item, "objective");
+
+    objective_array_size = cJSON_GetArraySize(json_quest_objective);
+    objective_array = malloc(objective_array_size * sizeof(struct Game_Quest_Objective));
+    if (!objective_array) 
+    {
+        fprintf(stderr, "Memory allocation failed\n");
+    }
+
+    if(cJSON_IsString(json_quest_name) && json_quest_name->valuestring != NULL)
+    {
+        strcpy(game_quest->game_quest_name, json_quest_name->valuestring);
+    }
+    if(cJSON_IsString(json_quest_description) && json_quest_description->valuestring != NULL)
+    {
+        strcpy(game_quest->game_quest_description, json_quest_description->valuestring);
+    }
+    if(cJSON_IsNumber(json_quest_id) && json_quest_id->valueint != NULL)
+    {
+        game_quest->game_quest_id = json_quest_id->valueint;
+    }
+    if(json_quest_objective)
+    {
+        set_objective_array(json_quest_objective, objective_array, objective_array_size);
+        game_quest->game_quest_objective_array = objective_array;
+        game_quest->objective_array_size = objective_array_size;
+    }
+}
+
+void init_game_quest_manager(struct Game_Quest_Manager *game_quest_manager, struct Maps *game_maps)
+{
+    int game_quest_array_size = 0;
+
+    struct Game_Quest *game_quest_array;
+
+    cJSON *json_file = load_json_file(FILENAME);
+    cJSON *json_quest_item = NULL;
+
+    game_quest_array_size = cJSON_GetArraySize(json_file);
+    game_quest_array = malloc(game_quest_array_size * sizeof(struct Game_Quest));
+    if (!game_quest_array) 
+    {
+        fprintf(stderr, "Memory allocation failed\n");
+        cJSON_Delete(json_file);
+    }
+
+    for (int i = 0; i < game_quest_array_size; i++)
+    {
+        game_quest_array[i] = create_game_quest();
+
+        cJSON *json_quest_item = cJSON_GetArrayItem(json_file, i);
+        set_game_quest_array(cJSON json_quest_item, &game_quest_array[i]);
+    }
+
+    game_quest_manager.game_quest_array = game_quest_array;
+    game_quest_manager.game_quest_array_size = game_quest_array_size;
+
+    cJSON_Delete(json_file);
+}
+
+void update_game_quest_manager(struct Game_Quest_Manager *game_quest_manager)
+{
+
+}
+
+void free_game_quest_manager(struct Game_Quest_Manager *quest_manager)
+{
+    if (!quest_manager || !quest_manager->game_quest_array)
+        return;
+
+    for (int i = 0; i < quest_manager->game_quest_array_size; i++)
+    {
+        struct Game_Quest *quest = &quest_manager->game_quest_array[i];
+        free(quest->game_quest_objective_array);
+    }
+
+    free(quest_manager->game_quest_array);
+}
