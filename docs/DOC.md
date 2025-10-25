@@ -25,7 +25,7 @@ The code is split into multiple files:
 - 'game_clock.h/c' - contains variables and functions to initiate game's clock and work with it;
 - 'game_script.h/c' - contains variables and functions for parsing game's script json files;
 - 'gameplay.h/c' - contains variables and functions to parse player's commands;
-- 'npc.h/c' - contains variables and functions to initiate game's NPCs and parse their dialogues from json files.
+- 'game_npc.h/c' - contains variables and functions to initiate game's NPCs and parse their dialogues from json files.
 
 ## Libraries
 
@@ -38,7 +38,7 @@ The code is split into multiple files:
 
 #### Constants
 
-- `#define MAXNAME 50` and `#define MAXLINE 100` are the maximum number of characters to be used in names and user input;
+- `#define MAXNAME 50`, `#define MAXLINE 100` and `#define MAXDESCRIPTION 500` are the maximum number of characters to be used in names, user input and descriptions;
 
 #### Enums
 
@@ -101,11 +101,61 @@ The code is split into multiple files:
 
 #### Structs
 
+##### Maps
+
+Struct `Maps` contains an array of struct `Map`.
+
 ```
 struct Maps
 {
     struct Map *map_array;
     int map_array_size;
+};
+```
+
+Each element of the array represents a node from game_map.json file. Each map contains a reference to the correspondent .json file with map locations. The struct `Map_Connection` points to the adjacent members of the `map_array`.
+
+```
+struct Map
+{
+    char map_name[MAXNAME];
+    char map_ref[MAXLINE];
+    struct Map_Connection *map_connection_array;
+    int map_connection_array_size;
+    struct Location *location_array;
+    int location_array_size;
+};
+```
+
+Each `Map_Connection` then points to a map and contains the distance between the adjacent nodes.
+
+```
+struct Map_Connection 
+{
+    const struct Map *map;
+    int connection_distance;
+};
+```
+
+Map locations are stored in an array of struct `Location`. The struct `Location_Connection` points to the adjacent members of the `location_array`.
+
+```
+struct Location
+{
+    char location_name[MAXNAME];
+    bool start_flag;
+    struct Location_Connection *connection_array;
+    int location_connection_array_size;
+};
+```
+
+Each `Location_Connection` then points to a location and contains the distance between the adjacent nodes.
+
+```
+struct Location_Connection 
+{
+    const struct Location *location;
+    int connection_distance;
 };
 ```
 
