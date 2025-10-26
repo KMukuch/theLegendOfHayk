@@ -22,6 +22,9 @@ int main()
     struct Player player = create_player();
     struct Game_Script_Manager game_script_manager = create_game_script_manager();
     struct Game_Quest_Manager game_quest_manager = create_game_quest_manager();
+    
+    init_game_quest_manager(&game_quest_manager, &game_maps);
+    read_game_quests(&game_quest_manager);
 
     printf("%s\n", load_game_title());
     getchar();
