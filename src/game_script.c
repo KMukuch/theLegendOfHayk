@@ -29,13 +29,16 @@ void advance_game_script(struct Game_Script_Manager *game_script_manager)
     }
 }
 
-void run_game_script_manager(struct Game_Script_Manager *game_script_manager)
+void run_game_script_manager(struct Game_Script_Manager *game_script_manager, struct Game_Quest_Reference *game_quest_reference)
 {
     if (game_script_manager->script_command_type == SCRIPT_LOAD)
     {
         bool pause_flag;
-        char *script_content = load_game_script(game_script_manager->current_script_id, &pause_flag);
-
+        cJSON *json_file = load_json_file(FILENAME);
+        char *script_content = load_game_script(json_file, game_script_manager->current_script_id, &pause_flag);
+        set_game_quest_reference_from_script(json_file, game_script_manager->current_script_id, game_quest_reference);
+        cJSON_Delete(json_file);
+        
         if(script_content != NULL)
         {
             printf("%s\n", script_content);
@@ -89,13 +92,12 @@ char* load_game_title()
     return title;
 }
 
-char* load_game_script(const int id, bool *pause_flag)
+char* load_game_script(cJSON *json_file, const int id, bool *pause_flag)
 {
     bool script_flag = false;
 
     char *content = NULL;
 
-    cJSON *json_file = load_json_file(FILENAME);
     cJSON *json_script = cJSON_GetObjectItemCaseSensitive(json_file, "script");
     cJSON *json_script_item = NULL;
 
@@ -108,7 +110,6 @@ char* load_game_script(const int id, bool *pause_flag)
             {
                 script_flag = true;
                 cJSON *json_script_item_content = cJSON_GetObjectItemCaseSensitive(json_script_item, "content");
-                cJSON *json_script_item_quest_ref = cJSON_GetObjectItemCaseSensitive(json_script_item, "quest_ref");
                 cJSON *json_script_pause = cJSON_GetObjectItemCaseSensitive(json_script_item, "pause");
                 if (cJSON_IsString(json_script_item_content) && json_script_item_content->valuestring != NULL)
                 {
@@ -118,6 +119,7 @@ char* load_game_script(const int id, bool *pause_flag)
                     {
                         fprintf(stderr, "Memory allocation failed\n");
                         cJSON_Delete(json_file);
+                        
                         return NULL;
                     }
                     strcpy(content, json_script_item_content->valuestring);
@@ -132,8 +134,6 @@ char* load_game_script(const int id, bool *pause_flag)
             }
         }
     }
-
-    cJSON_Delete(json_file);
 
     return content;
 }

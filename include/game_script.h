@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include "config.h"
+#include "game_quest.h"
 
 struct Game_Script_Manager
 {
@@ -13,10 +14,10 @@ struct Game_Script_Manager
 struct Game_Script_Manager create_game_script_manager();
 
 void advance_game_script(struct Game_Script_Manager *game_script_manager);
-void run_game_script_manager(struct Game_Script_Manager *game_script_manager);
+void run_game_script_manager(struct Game_Script_Manager *game_script_manager, struct Game_Quest_Reference *game_quest_reference);
 
 char* load_game_title();
-char* load_game_script(const int id, bool *pause_flag);
+char* load_game_script(cJSON *json_file, const int id, bool *pause_flag);
 
 void free_script_content(char *script_content);
 

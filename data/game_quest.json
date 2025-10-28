@@ -2,24 +2,55 @@
     {
         "name": "Meet Hayk",
         "id": 0,
-        "description": "Find and speak with Hayk.",
+        "description": "Set out on a journey and find Hayk.",
         "objective": [
             {
-                "name": "Talk to Vazgen.",
+                "name": "Go to the Shrine.",
                 "id": 0,
                 "description": "Go to the Shrine in Ararat Valley Village and find Vazgen.",
+                "objective_type": 1,
                 "objective_location": {
                     "map": "Ararat Valley Village",
                     "location": "Shrine"
                 }
             },
             {
-                "name": "Talk to the old man Arsen.",
+                "name": "Talk with Vazgen.",
                 "id": 1,
-                "description": "Find the old man Arsen and talk to him. He is waiting at the village gates.",
+                "description": "Talk with Vazgen. He is waiting at the Shrine in Ararat Valley Village.",
+                "objective_type": 2,
                 "objective_location": {
                     "map": "Ararat Valley Village",
                     "location": "Shrine"
+                },
+                "objective_npc": {
+                    "id": 0
+                }
+            },
+            {
+                "name": "Go to the Ararat Valley Village gates.",
+                "id": 2,
+                "objective_type": 1,
+                "description": "Find the old man Arsen and talk to him. He is waiting at the village gates.",
+                "objective_location": {
+                    "map": "Ararat Valley Village",
+                    "location": "Gate"
+                },
+                "objective_npc": {
+                    "id": 1
+                }
+            },
+            {
+                "name": "Talk with the old man Arsen.",
+                "id": 2,
+                "objective_type": 2,
+                "description": "Find the old man Arsen and talk to him. He is waiting at the village gates.",
+                "objective_location": {
+                    "map": "Ararat Valley Village",
+                    "location": "Gate"
+                },
+                "objective_npc": {
+                    "id": 1
                 }
             }
         ]

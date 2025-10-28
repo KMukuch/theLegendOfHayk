@@ -15,7 +15,7 @@ int main()
     char buffer[MAXLINE];
 
     Game_State game_state = STATE_MENU;
-
+    
     struct Game_Clock game_clock = init_game_clock();
     struct Maps game_maps = init_game_map();
     struct NPCs game_npcs = init_game_npcs(&game_maps);
@@ -24,7 +24,7 @@ int main()
     struct Game_Quest_Manager game_quest_manager = create_game_quest_manager();
     
     init_game_quest_manager(&game_quest_manager, &game_maps);
-    read_game_quests(&game_quest_manager);
+    // read_game_quests(&game_quest_manager);
 
     printf("%s\n", load_game_title());
     getchar();
@@ -56,7 +56,10 @@ int main()
         }
         else if (game_state == STATE_SCRIPT)
         {
+            struct Game_Quest_Reference game_quest_reference;
+
             run_game_script_manager(&game_script_manager);
+            update_game_quest_manager(&game_quest_manager, &game_quest_reference);
 
             if (game_script_manager.script_command_type == SCRIPT_PAUSE)
             {
@@ -92,6 +95,7 @@ int main()
     }
 
     free_game_npcs(&game_npcs);
+    free_game_quest_manager(&game_quest_manager)
     free_game_map(&game_maps);
 
     return 0;
