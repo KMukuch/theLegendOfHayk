@@ -162,7 +162,7 @@ void set_game_quest_reference_from_script(cJSON *json_file, const int game_scrip
     
     cJSON *json_script = cJSON_GetObjectItemCaseSensitive(json_file, "script");
     cJSON *json_script_item = NULL;
-
+    
     cJSON_ArrayForEach(json_script_item, json_script)
     {
         cJSON *json_script_item_id = cJSON_GetObjectItemCaseSensitive(json_script_item, "id");

@@ -9,6 +9,7 @@
 #include "game_clock.h"
 #include "gameplay.h"
 #include "game_npc.h"
+#include "game_quest.h"
 
 struct Player create_player()
 {
@@ -50,12 +51,13 @@ Game_Command_Type identify_game_command(const char *command)
     if (strcmp(trimmed_command, "where") == 0) return GAME_WHERE;
     if (strcmp(trimmed_command, "map local") == 0) return GAME_MAP_LOCAL;
     if (strcmp(trimmed_command, "map global") == 0) return GAME_MAP_GLOBAL;
+    if (strcmp(trimmed_command, "quests") == 0) return GAME_QUEST_STATS;
     if (strcmp(trimmed_command, "menu") == 0) return GAME_MENU;
     
     return GAME_UNKNOWN;
 }
 
-void parse_and_execute_command(const char *command, struct Player *player, const struct Maps *game_maps, const struct NPCs *game_npcs)
+void parse_and_execute_command(const char *command, struct Player *player, const struct Maps *game_maps, const struct NPCs *game_npcs, const struct Game_Quest_Manager *game_quest_manager)
 {
     Game_Command_Type command_type = identify_game_command(command);
     player->game_command_type = command_type;
@@ -79,6 +81,16 @@ void parse_and_execute_command(const char *command, struct Player *player, const
             if(player->player_location.map == game_npcs->npc_array[i].npc_location.map)
             {
                 printf("You see %s.", game_npcs->npc_array[i].npc_name);
+            }
+        }
+    } else if(command_type == GAME_QUEST_STATS)
+    {
+        printf("=== Quest Log ===\n");
+        for(int i = 0; i < game_quest_manager->game_quest_array_size; i++)
+        {
+            if(game_quest_manager->game_quest_array[i].in_progress)
+            {
+                printf("%s", game_quest_manager->game_quest_array[i].game_quest_name);
             }
         }
     }

@@ -43,6 +43,7 @@ typedef enum
     GAME_WHERE,
     GAME_MAP_LOCAL,
     GAME_MAP_GLOBAL,
+    GAME_QUEST_STATS,
     GAME_MENU
 } Game_Command_Type;
 
@@ -61,6 +62,13 @@ typedef enum
     ITEM_BONUS_ARMOR,
     ITEM_BONUS_HEALTH
 } Item_Bonus_Type;
+
+typedef enum
+{
+    QUEST_STATE_UNKNOWN,
+    QUEST_STATE_START,
+    QUEST_STATE_COMPLETE
+} Game_Quest_State;
 
 typedef enum
 {

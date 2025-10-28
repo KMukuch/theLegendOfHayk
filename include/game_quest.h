@@ -59,6 +59,7 @@ void set_objective_location(cJSON *json_objective_location, struct Game_Quest_Ob
 void set_quest_objective(cJSON *json_quest_objective, struct Game_Quest_Objective *game_quest_objective, struct Maps *game_maps);
 void set_objective_array(cJSON *json_quest_objective_array, struct Game_Quest_Objective *objective_array, int objective_array_size, struct Maps *game_maps);
 void set_game_quest(cJSON *json_quest_item, struct Game_Quest *game_quest, struct Maps *game_maps);
+
 void set_game_quest_reference_from_script(cJSON *json_file, const int game_script_id, struct Game_Quest_Reference *game_quest_reference);
 
 void _in_progress(struct Game_Quest_Reference *game_quest_reference, struct Game_Quest_Manager *game_quest_manager);

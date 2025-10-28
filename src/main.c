@@ -31,6 +31,7 @@ int main()
 
     while (game_state != STATE_QUIT)
     {
+        struct Game_Quest_Reference game_quest_reference;
         if (game_state == STATE_MENU)
         {
             show_main_menu();
@@ -56,18 +57,18 @@ int main()
         }
         else if (game_state == STATE_SCRIPT)
         {
-            struct Game_Quest_Reference game_quest_reference;
-
-            run_game_script_manager(&game_script_manager);
+            run_game_script_manager(&game_script_manager, &game_quest_reference);
             update_game_quest_manager(&game_quest_manager, &game_quest_reference);
 
             if (game_script_manager.script_command_type == SCRIPT_PAUSE)
             {
                 game_state = STATE_PLAYING;
-            }
-            else
+            } else if (game_script_manager.script_command_type == SCRIPT_LOAD)
             {
                 game_state = STATE_SCRIPT;
+            } else 
+            {
+                game_state = STATE_QUIT;
             }
         }
         else if (game_state == STATE_PLAYING)
@@ -76,7 +77,7 @@ int main()
             printf("> ");
             if (fgets(buffer, MAXLINE, stdin))
             {
-                parse_and_execute_command(buffer, &player, &game_maps, &game_npcs);
+                parse_and_execute_command(buffer, &player, &game_maps, &game_npcs, &game_quest_manager);
 
                 if (player.game_command_type == GAME_MENU)
                 {
@@ -95,7 +96,7 @@ int main()
     }
 
     free_game_npcs(&game_npcs);
-    free_game_quest_manager(&game_quest_manager)
+    free_game_quest_manager(&game_quest_manager);
     free_game_map(&game_maps);
 
     return 0;
